@@ -1,32 +1,19 @@
 ﻿<?php
 //tableaux de fonctions
 session_start();
-require ('lib/main.php');
-require ($cfg['ROOT_DIR'] . '/lib/parameters.inc.php');
-require ($cfg['ROOT_DIR'] . '/lib/models/movies.inc.php');
-require ($cfg['ROOT_DIR'] . '/lib/models/ipuser.inc.php');
-require ($cfg['ROOT_DIR'] . '/lib/models/quizz.inc.php');
-require ($cfg['ROOT_DIR'] . '/lib/models/questions.inc.php');
-require ($cfg['ROOT_DIR'] . '/lib/models/propositions.inc.php');
-// instancier les objets 
+require ('main.inc.php');
+//require ($cfg['ROOT_DIR'] . '/lib/parameters.inc.php');
 
-$oParameter = Parameter::getInstance($db);
-$oMovie = Movie::getInstance($db);
-$oQuizz = Quizz::getInstance($db);
-$oQuestion = Question::getInstance($db);
-$oProposition = Proposition::getInstance($db);
 
 // extraire les informations en fonction de la méthode d'appel
 if (isset($_GET) && !empty($_GET)) {
     extract($_GET);
 }
-//$param = $oParameter->getAll();
-//$films = $oMovie->getAll();
-// valeurs par défaut 
-//if (empty($_GET)) {
+
 if (isset($_POST) && !empty($_POST)) {
     extract($_POST);
 }
+
 switch ($mode) {
 
     // DELOG pour l'admin 
@@ -40,7 +27,7 @@ switch ($mode) {
     // EFFACER un film 
     // paramètres complémentaires : 
     //  idmovie 
-    case 'delete':
+    case 'delete_user':
         $film = $oMovie->get($idmovie);
         deletethumbnail($film['poster']);
         $oMovie->delete($idmovie);
