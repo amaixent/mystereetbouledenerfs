@@ -12,7 +12,7 @@ function enregistrer_user($nom_user, $mdp_user, $mail) {
     $req = Database::get()->prepare_execute_add_up_del("INSERT INTO user (id_user, nom_user, mdp_user, mail, statut, idEnigme, point_user) VALUES (NULL, :nom_user, :mdp_user,  :mail, 'joueur', '0', '10')", 
     array(
         'nom_user' => $nom_user,
-        'mdp_user' => $mdp_user,
+        'mdp_user' => md5($mdp_user),
         'mail' => $mail
     ));
     return $req;
@@ -36,7 +36,7 @@ function modifier_user($id_user, $nom_user, $mdp_user, $mail, $statut, $idEnigme
 function authentifier_user($nom_user) {
     //SELECT `id_user`, `mdp_user` FROM `user` WHERE `nom_user`='pseudo';
     //On prépare la requête car une variable est présente dedans, cela pour éviter les injections
-    $req = Database::get()->prepare_execute("SELECT id_user, mdp_user FROM user WHERE nom_user = ?", $nom_user);
+    $req = Database::get()->prepare_execute("SELECT id_user, mdp_user FROM user WHERE nom_user = ?", array($nom_user));
     // le ? est remplacé par la variable $nom_user
     return $req;
 }
