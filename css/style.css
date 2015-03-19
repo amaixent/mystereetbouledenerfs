@@ -1,251 +1,251 @@
 
 /* CSS Commun à plusieurs pages*/
 body {
-	background-image: url("../img/bg1.png");
-	
+    background-image: url("../img/bg1.png");
+
 }
 
 section {
-	width: 35%;
-	padding:2% 5% 2% 5%;
-	background-color: rgba(255, 255, 255, 0.3);
-	margin:5% auto 0% auto;
-	display:inline-block;
-	border-radius: 12px;
-	text-align: center;
-	list-style: none;
-	font-size: 16px;
+    width: 35%;
+    padding:2% 5% 2% 5%;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin:5% auto 0% auto;
+    display:inline-block;
+    border-radius: 12px;
+    text-align: center;
+    list-style: none;
+    font-size: 16px;
 }
 section p {
-	text-align: left;
-	font-size: 16px;
+    text-align: left;
+    font-size: 16px;
 
 }
 
 /* CSS page index.php*/
 
 .titre{
-	font-family: 'Shadows Into Light';
-	color: #CCCCCC;
-	width: 35%;
-	padding:2% 3% 2% 2%;
-	background-color: rgba(255, 255, 255, 0.3);
-	margin:7% auto 0% auto;
-	border-radius: 12px;
-	text-align: center;
+    font-family: 'Shadows Into Light';
+    color: #CCCCCC;
+    width: 35%;
+    padding:2% 3% 2% 2%;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin:7% auto 0% auto;
+    border-radius: 12px;
+    text-align: center;
 }
 
 .bar_sup{
-	padding:1% 0% 0% 0%;
-	color: #CCCCCC;
-	background-color: rgba(0, 0, 0, 0.2);
+    padding:1% 0% 0% 0%;
+    color: #CCCCCC;
+    background-color: rgba(0, 0, 0, 0.2);
 
 
 }
 .bar_sup p{
-	margin:1% 0% 0% 0%;
-	display:inline-block;
+    margin:1% 0% 0% 0%;
+    display:inline-block;
 }
 
 .bar_sup  li p{
-	margin:10% 0% 0% 3%;
-	display:inline-block;
+    margin:10% 0% 0% 3%;
+    display:inline-block;
 }
 
 .bar_sup .links{
-	display:inline-block;
-	float:right;
+    display:inline-block;
+    float:right;
 }
 .nv_mess{
-	color: #B32245;
+    color: #B32245;
 }
 
 .MP_oubli{
-	color: #284884;
+    color: #284884;
 }
 
 .conditions{
-	color: #4C4F4F;
-	padding:2% 5% 2% 5%;
-	background-color: rgba(0, 0, 0, 0.2);
-	margin:10% 0% 0% 0%;
-	text-align: center;
+    color: #4C4F4F;
+    padding:2% 5% 2% 5%;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin:10% 0% 0% 0%;
+    text-align: center;
 }
 
 /* CSS page enregistrement.php*/
 
 .inscription{
-	margin:12.5% auto 0% auto;
+    margin:12.5% auto 0% auto;
 }
 .btn_enregistrement{
-	margin:5% 0% 0% 0%;
+    margin:5% 0% 0% 0%;
 
 }
 
 /* CSS page enigme.php*/
 .titre_enigme{
-	font-family: 'Shadows Into Light';
-	color: #CCCCCC;
-	margin:3% 0% 5% 5%;
+    font-family: 'Shadows Into Light';
+    color: #CCCCCC;
+    margin:3% 0% 5% 5%;
 }
 
 .image{
 
-/*Le format des images doit être 800x600 sinon c'est la merde!*/
-	width: 65%;
-	padding:1% 0% 1% 0%;
-	margin:5% auto 0% auto;
-	background-color: rgba(255, 255, 255, 0.3);
-	border-radius: 4px;
-	text-align: center;
+    /*Le format des images doit être 800x600 sinon c'est la merde!*/
+    width: 65%;
+    padding:1% 0% 1% 0%;
+    margin:5% auto 0% auto;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    text-align: center;
 
 }
 .image p{
-	margin:0% 0% 0% 75%;
+    margin:0% 0% 0% 75%;
 
 }
 .rep{
-	width: 30%;
-	padding:1% 0% 1% 0%;
-	margin:5% auto 3% auto;
-	background-color: rgba(255, 255, 255, 0.3);
-	border-radius: 4px;
-	text-align: center;
+    width: 30%;
+    padding:1% 0% 1% 0%;
+    margin:5% auto 3% auto;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    text-align: center;
 }
 
 .rep .form-control{
-	display:inline-block;
+    display:inline-block;
 
 }
 
 .rep .btn{
-	display:inline-block;
+    display:inline-block;
 }
 
 
 
 .rep p{
-	margin:2% 0% 0% 0%;
+    margin:2% 0% 0% 0%;
 
 }
 
 .btn-aide{
-	margin:0% 0% 3% 46%;
+    margin:0% 0% 3% 46%;
 }
 
 
 
 /*CSS page aide.php*/
 .aide {
-	margin:5% 0% 5% 5%;
+    margin:5% 0% 5% 5%;
 }
 
 .indice{
-	display:inline-block;
+    display:inline-block;
 }
 
 .afficher-indice2{
-	color: #CCCCCC;
-	padding:3% 5% 3% 5%;
-	background-color: rgba(0, 0, 0, 0.3);
-	margin:0% auto 0% auto;
-	display:inline-block;
-	border-radius: 12px;
-	text-align: center;
-	list-style: none;
+    color: #CCCCCC;
+    padding:3% 5% 3% 5%;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin:0% auto 0% auto;
+    display:inline-block;
+    border-radius: 12px;
+    text-align: center;
+    list-style: none;
 
 }
 
 /* CSS page creation_indice.php*/
 .indice_crea{
-	margin: 5% auto 5% auto;
+    margin: 5% auto 5% auto;
 }
 .btn_indic_pre{
-	margin: 0% 0% 0% 33%;
+    margin: 0% 0% 0% 33%;
 
 }
 
 /* CSS page creation_enigme.php*/
 .prop_enigme{
-	width: 50%
+    width: 50%
 }
 .crea_enigme{
-	margin: 5% auto 5% auto;
+    margin: 5% auto 5% auto;
 }
 /*CSS page regles.php*/
 
 .regles{
-	width: 50%;
-	padding:2% 5% 2% 5%;
-	background-color: rgba(255, 255, 255, 0.3);
-	margin:5% auto 5% auto;
-	border-radius: 12px;
+    width: 50%;
+    padding:2% 5% 2% 5%;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin:5% auto 5% auto;
+    border-radius: 12px;
 }
 
 .regles .btn{
-	margin:2% 0% 0% 58%;
+    margin:2% 0% 0% 58%;
 }
 /* CSS page creer_message.php*/
 
 .message{
-	margin-top: 10%
+    margin-top: 10%
 }
 /*CSS page afficher_message.php*/
 .msg_affich{
-	width: 40%;
-	text-align: left;
+    width: 40%;
+    text-align: left;
 
 }
 
 .msg_contenu{
-	color: #CCCCCC;
-	padding:3% 5% 3% 5%;
-	background-color: rgba(0, 0, 0, 0.3);
-	margin:3% auto 3% auto;
-	border-radius: 12px;
-	text-align: left;
+    color: #CCCCCC;
+    padding:3% 5% 3% 5%;
+    background-color: rgba(0, 0, 0, 0.3);
+    margin:3% auto 3% auto;
+    border-radius: 12px;
+    text-align: left;
 
 }
 .msg_affich .repondre{
-	margin: 0% 0% 0% 58%;
+    margin: 0% 0% 0% 58%;
 
 }
 /*CSS page messagerie.php*/
 .bienvenue{
-	width: 50%;
-	font-family: 'Shadows Into Light';
+    width: 50%;
+    font-family: 'Shadows Into Light';
 
 }
 .messagerie{
-	width: 50%;
-	margin-bottom: 5%
+    width: 50%;
+    margin-bottom: 5%
 
 }
 .messagerie_contenu{
-	color: #CCCCCC;
-	padding:3% 5% 3% 5%;
-	background-color: rgba(0, 0, 0, 0.3);
-	margin:0% auto 0% auto;
-	border-radius: 12px;
-	text-align: left;
-	text-decoration:none;
+    color: #CCCCCC;
+    padding:3% 5% 3% 5%;
+    background-color: rgba(0, 0, 0, 0.3);
+    margin:0% auto 0% auto;
+    border-radius: 12px;
+    text-align: left;
+    text-decoration:none;
 }
 
 .display_inline_b{
-	display:inline-block;
+    display:inline-block;
 }
 .messagerie_contenu .objet{
-	margin:0% 0% 0% 20%;
+    margin:0% 0% 0% 20%;
 
 }
 .message_non_lu{
-	text-decoration:none;
-	display:inline-block;
-	color: #BE2349;
+    text-decoration:none;
+    display:inline-block;
+    color: #BE2349;
 
 }
 .message_lu{
-	text-decoration:none;
-	display:inline-block;
-	color: #284884;	
+    text-decoration:none;
+    display:inline-block;
+    color: #284884;	
 }

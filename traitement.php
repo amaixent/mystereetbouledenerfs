@@ -28,6 +28,7 @@ switch ($mode) {
     // DELOG pour l'admin 
     case 'logout':
         $_SESSION['login'] = false;
+        session_destroy();
         header("location:index.php");
         exit();
         break;
