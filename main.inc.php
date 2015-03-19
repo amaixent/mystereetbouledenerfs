@@ -38,7 +38,8 @@ function authentifier_user($nom_user) {
     //SELECT `id_user`, `mdp_user` FROM `user` WHERE `nom_user`='pseudo';
     //On prépare la requête car une variable est présente dedans, cela pour éviter les injections
     $req = Database::get()->prepare_execute("SELECT id_user, mdp_user FROM user WHERE nom_user = ?", array($nom_user));
-    var_dump($req);
+    /*echo '$req - authentifier_user :';
+    var_dump($req);*/
     // le ? est remplacé par la variable $nom_user
     return $req;
 }
@@ -49,9 +50,9 @@ function select_by_id($table, $idparam, $id) {
     return $req;
 }
 
-
+//Pas si 
 function select_by_id_notall($params, $table, $idparam, $id) {
-    /* exemple : select_by_id('user', 'id_user', 2) */
+    /* exemple : select_by_id_notall('point_user,idEnigme','user', 'id_user', 2) */
     $req = Database::get()->get_by_id_notall($params,$table, $idparam, $id);
     return $req;
 }

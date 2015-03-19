@@ -3,27 +3,18 @@ session_start();
 require ('main.inc.php');
 
 //enregistrer_user("User7775654", "md77rgs7p", "mai7fgdfg77l@mail.com");
-
+$message = "";
 if (!empty($_POST)) {
     //lecture des paramètres
 
-    $auth = authentifier_user($user_name);
-    //var_dump($auth);
-    //echo $auth[0]["id_user"], $auth[0]["mdp_user"];
-    // ["id_user"]=> string(2) "22" ["mdp_user"]
-
-    $message = "";
+    $auth = authentifier_user($_POST['nom_user']);
     //traitement
-    if ($user_pwd == $auth[0]["mdp_user"]) {
+    if (md5($_POST['mdp_user']) == $auth[0]["mdp_user"]) {
         $_SESSION['login'] = true;
-        $_SESSION['pseudo'] = $user_name;
+        $_SESSION['pseudo'] = $_POST['nom_user'];
         $_SESSION['id_user'] = $auth[0]["id_user"];
-
-        //var_dump($_SESSION);
-
-        $message = "victoire ";
-        //header("location:traitement.php?mode=acceder_enigme");
-        //exit();
+        header("location:traitement.php?mode=acceder_enigme");
+        exit();
     } else {
         $message = "INCORRECT, veuillez vous ré-identifier ";
     }
@@ -37,7 +28,7 @@ if (!empty($_POST)) {
         <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+        <!--<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />-->
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -51,8 +42,6 @@ if (!empty($_POST)) {
     <body>
 
 <?php include("include/menu.php") ?>
-
-
 
         <nav>	
             <div class="titre">
