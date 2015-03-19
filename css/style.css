@@ -91,13 +91,16 @@ section p {
 
 .image{
 
-    /*Le format des images doit être 800x600 sinon c'est la merde!*/
     width: 65%;
     padding:1% 0% 1% 0%;
     margin:5% auto 0% auto;
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 4px;
     text-align: center;
+
+}
+.image img{
+    max-width: 100%;
 
 }
 .image p{

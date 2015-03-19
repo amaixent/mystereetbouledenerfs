@@ -39,7 +39,7 @@ if (!empty($_GET)) {
         </div>
 
         <div class="image">
-            <img src="enigme/1/img2.jpg" alt="Ceci est une enigme"/>
+            <img src="enigme/1/2.jpg" alt="Ceci est une enigme"/>
             <br>
             <h1>Ceci n'est pas une enigme?</h1>
             <p> auteur : pseudo_auteur</p>
