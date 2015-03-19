@@ -4,7 +4,10 @@ require ('main.inc.php');
 
 //enregistrer_user("User7775654", "md77rgs7p", "mai7fgdfg77l@mail.com");
 $message = "";
-if (!empty($_POST)) {
+if (isset($_GET) && !empty($_GET)) {
+    extract($_GET);
+}
+if (isset($_POST) && !empty($_POST)) {
     //lecture des paramètres
 
     $auth = authentifier_user($_POST['nom_user']);
@@ -28,7 +31,7 @@ if (!empty($_POST)) {
         <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!--<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />-->
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -41,8 +44,20 @@ if (!empty($_POST)) {
     </head>
     <body>
 
-<?php include("include/menu.php") ?>
-
+        <?php
+        include("include/menu.php");
+        if (isset($alert)) {
+            if($alert == "interdit"){
+                $avertissement = "L'accès à cette page est interdit !";
+            }
+            if($alert == "deconnecte"){
+                $avertissement = "Accès interdit, veuillez vous connecter pour voir la page souhaitée.";
+            }
+            echo "<div class='alert alert-warning'>
+                    <strong>Warning ! $avertissement</strong> 
+                </div>";
+        }
+        ?>
         <nav>	
             <div class="titre">
                 <h1>Mystère et boule de nerf...</h1> 
@@ -57,7 +72,7 @@ if (!empty($_POST)) {
         </section>
 
         <section>
-<?php echo "<p>$message</p>"; ?>
+            <?php echo "<p>$message</p>"; ?>
             <!-- Formulaire se connecter-->
             <form method="post">
                 <div class="form-group">

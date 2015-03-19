@@ -17,7 +17,6 @@ switch ($mode) {
     //enregistrer un utilisateur
     case 'new_user':
         if (empty($_SESSION['login'])) {
-
             enregistrer_user($nom_user, $mdp_user, $mail);
         }
 
@@ -25,7 +24,7 @@ switch ($mode) {
         exit();
         break;
 
-    // DELOG pour l'admin 
+    // se déconnecter
     case 'logout':
         $_SESSION['login'] = false;
         session_destroy();
@@ -33,16 +32,9 @@ switch ($mode) {
         exit();
         break;
 
-
-    // EFFACER un film 
-    // paramètres complémentaires : 
-    //  idmovie 
-    case 'delete_user':
-        $film = $oMovie->get($idmovie);
-        deletethumbnail($film['poster']);
-        $oMovie->delete($idmovie);
-        header("location:filmo.php");
-        exit();
+    // accéder à l'énigme en cours
+    case 'acceder_enigme':
+        
         break;
 }
 ?>
