@@ -3,24 +3,36 @@
 session_start();
 require ('main.inc.php');
 
-//enregistrer_user("User numéro n", "Coucou", "mdp");
+//enregistrer_user("User", "mdp", "mail@mail.com");
 
 if (!empty($_POST)) {
     //lecture des paramètres
     $user_name = $_POST['nom_user'];
+    echo "username : $user_name <br>";
+    
     $user_pwd = md5($_POST['mdp_user']);
+    echo "mot de passe : $user_pwd <br>";
     
     $auth = authentifier_user($user_name);
+    foreach($auth as $truc){
+        echo $truc;
+    }
     var_dump($auth);
-    
+    $message = "";
     //traitement
-    if ($user_pwd == $mdp_user["value"]) {
+    /*if ($user_pwd == md5($auth["mdp_user"])) {
         $_SESSION['login'] = true;
-        $message = "VICTOIRE";
+        $_SESSION['pseudo'] = $user_name;
+        $message = "victoire ";
+        //header("location:traitement.php?mode=acceder_enigme");
         exit();
     } else {
         $message = "INCORRECT, veuillez vous ré-identifier ";
     }
+    
+    if($_SESSION['login'] == true){
+        $_SESSION['pseudo'] = $pseudo;
+    }*/
 }
 
 ?>
@@ -47,7 +59,7 @@ if (!empty($_POST)) {
 
         <!--Si l'utilisateur est connecté -->
         <header id="navbar" class="navbar-collapse collapse bar_sup">
-            <p>Bonjour Nom_utilisateur_connecté, vous avez *** points.</p>
+            <p>Bonjour <?php echo $pseudo ?>, vous avez *** points.</p>
             <ul class="nav navbar-nav links">
                 <li> <a href="regles.php">Les règles</a></li>
                 <li> <a href="enigme.php">Énigme en cours</a></li>

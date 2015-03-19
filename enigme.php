@@ -1,3 +1,16 @@
+<?php
+session_start();
+require ('main.inc.php');
+if (!empty($_POST)) {
+    extract($_POST);
+}
+if (!empty($_GET)) {
+    extract($_GET);
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 	<head>	
