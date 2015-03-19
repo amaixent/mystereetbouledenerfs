@@ -18,6 +18,7 @@
 		<link href="css/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 	</head>
         <body> 
+            <?php include("include/menu.php") ?>
             <section class="bienvenue">
                 <h1>Bienvenue sur votre messagerie.</h1>
             </section>
@@ -60,6 +61,7 @@
                     <p>Aucun message.</p>
                 </div>
             </section>
+            <?php include("include/footer.php") ?>
         </body>
 
 </html>
