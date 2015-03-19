@@ -1,41 +1,33 @@
 <?php
-
 session_start();
 require ('main.inc.php');
 
-//enregistrer_user("User", "mdp", "mail@mail.com");
+//enregistrer_user("User7775654", "md77rgs7p", "mai7fgdfg77l@mail.com");
 
 if (!empty($_POST)) {
     //lecture des paramètres
-    $user_name = $_POST['nom_user'];
-    echo "username : $user_name <br>";
-    
-    $user_pwd = md5($_POST['mdp_user']);
-    echo "mot de passe : $user_pwd <br>";
-    
+
     $auth = authentifier_user($user_name);
-    
-    echo $id_user, $auth["mdp_user"];
-    
+    //var_dump($auth);
+    //echo $auth[0]["id_user"], $auth[0]["mdp_user"];
     // ["id_user"]=> string(2) "22" ["mdp_user"]
-    
+
     $message = "";
     //traitement
-    /*if ($user_pwd == md5($auth["mdp_user"])) {
+    if ($user_pwd == $auth[0]["mdp_user"]) {
         $_SESSION['login'] = true;
         $_SESSION['pseudo'] = $user_name;
+        $_SESSION['id_user'] = $auth[0]["id_user"];
+
+        //var_dump($_SESSION);
+
         $message = "victoire ";
         //header("location:traitement.php?mode=acceder_enigme");
-        exit();
+        //exit();
     } else {
         $message = "INCORRECT, veuillez vous ré-identifier ";
     }
-    
-    if($_SESSION['login'] == true){
-        $_SESSION['pseudo'] = $pseudo;
-    }*/
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,7 +37,7 @@ if (!empty($_POST)) {
         <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!--<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />-->
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -58,17 +50,7 @@ if (!empty($_POST)) {
     </head>
     <body>
 
-        <!--Si l'utilisateur est connecté -->
-        <header id="navbar" class="navbar-collapse collapse bar_sup">
-            <p>Bonjour <?php echo $pseudo ?>, vous avez *** points.</p>
-            <ul class="nav navbar-nav links">
-                <li> <a href="regles.php">Les règles</a></li>
-                <li> <a href="enigme.php">Énigme en cours</a></li>
-                <li> <a href="messagerie.php" class="nv_mess">Ma messagerie</a></li>
-                <li> <a href="creation_enigme.php">Proposer une énigme</a></li>
-                <li> <a href="#deconnexion">Déconnexion</a></li>
-            </ul>
-        </header>
+<?php include("include/menu.php") ?>
 
 
 
@@ -86,7 +68,7 @@ if (!empty($_POST)) {
         </section>
 
         <section>
-            <?php echo "<p>$message</p>"; ?>
+<?php echo "<p>$message</p>"; ?>
             <!-- Formulaire se connecter-->
             <form method="post">
                 <div class="form-group">

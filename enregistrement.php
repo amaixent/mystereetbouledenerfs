@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+require ('main.inc.php');
+?>
 <!DOCTYPE html>
 <html>
     <head>  
@@ -14,8 +17,8 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-    
-      
+
+
         <link href="css/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     </head>
     <body>
@@ -28,7 +31,7 @@
                     <label for="nom_user">identifiant :</label>
                     <input type="text" class="form-control" id="nom_user" name="nom_user" required/>
                 </div>
-                 <div class="form-group">
+                <div class="form-group">
                     <label for="mdp_user">mot de passe :</label>
                     <input type="password" class="form-control" id="mdp_user" name="mdp_user" required/>
                 </div>
@@ -37,7 +40,7 @@
                     <input type="email" class="form-control" id="mail" name="mail" required/>
                 </div>
                 <label class="checkbox-inline">
-                 <input type="checkbox" id="inlineCheckbox1" value="option1" required> J'ai lu et compris les règles et le fonctionnement de ce site.
+                    <input type="checkbox" id="inlineCheckbox1" value="option1" required> J'ai lu et compris les règles et le fonctionnement de ce site.
                 </label>
 
                 <div class="btn_enregistrement">
@@ -45,7 +48,7 @@
                 </div>
             </form>
         </section>
-        
+
         <?php include("include/footer.php") ?>
 
     </body>

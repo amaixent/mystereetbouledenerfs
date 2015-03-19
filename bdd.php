@@ -32,6 +32,12 @@ class Database
 		$stmt = $this->prepare_execute('SELECT * FROM '.$_table.' WHERE '.$_idparam.' = :id LIMIT 1;',[':id' => $_id]);
 		return $stmt[0];
 	}
+        
+	public function get_by_id_notall($_params,$_table,$_idparam,$_id)
+	{
+		$stmt = $this->prepare_execute('SELECT '.$_params.' FROM '.$_table.' WHERE '.$_idparam.' = :id LIMIT 1;',[':id' => $_id]);
+		return $stmt[0];
+	}
 
 	public static function get()
 	{

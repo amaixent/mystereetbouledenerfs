@@ -3,8 +3,6 @@
 session_start();
 require ('main.inc.php');
 //require ($cfg['ROOT_DIR'] . '/lib/parameters.inc.php');
-
-
 // extraire les informations en fonction de la méthode d'appel
 if (isset($_GET) && !empty($_GET)) {
     extract($_GET);
@@ -18,12 +16,11 @@ switch ($mode) {
 
     //enregistrer un utilisateur
     case 'new_user':
-        if (empty ( $_SESSION['login'] ) ){
+        if (empty($_SESSION['login'])) {
 
             enregistrer_user($nom_user, $mdp_user, $mail);
-            
         }
- 
+
         header("location: index.php");
         exit();
         break;
@@ -46,6 +43,5 @@ switch ($mode) {
         header("location:filmo.php");
         exit();
         break;
-
 }
 ?>
