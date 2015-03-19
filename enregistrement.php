@@ -18,6 +18,7 @@
         <link href="css/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     </head>
     <body>
+        <?php include("include/menu.php") ?>
         <section class="inscription">
             <h1>Inscription</h1>
             <br>
@@ -43,6 +44,9 @@
                 </div>
             </form>
         </section>
+        
+        <?php include("include/footer.php") ?>
+
     </body>
 </html>
 

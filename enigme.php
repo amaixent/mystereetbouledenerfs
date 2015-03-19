@@ -32,6 +32,7 @@ if (!empty($_GET)) {
 	</head>
 
 	<body>
+		<?php include("include/menu.php") ?>
 
 		<div class="titre_enigme">
 			<h1>Ceci n'est pas Le titre d'une enigme</h1>
@@ -58,6 +59,9 @@ if (!empty($_GET)) {
         <div class="btn-aide">
         	<a href="aide.php"><button type="submit" type="button" class="btn btn-default indice">Besoin d'aide</button></a>
         <div>
+
+        <?php include("include/footer.php") ?>
+
 
 	</body>
 </html>

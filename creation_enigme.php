@@ -19,6 +19,7 @@
     </head>
 
     <body>
+        <?php include("include/menu.php") ?>
         <section class="prop_enigme">
             <h1>Quelques consignes avant de vous lancer :<h3>
             <p>
@@ -90,6 +91,9 @@
         		</div>
         	</form>
         </section>
+
+        <?php include("include/footer.php") ?>
+
     </body>
 
 </html>

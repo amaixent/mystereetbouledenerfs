@@ -19,6 +19,7 @@
 	</head>
 
  	<body>
+ 		<?php include("include/menu.php") ?>
 	  	<div class="regles">
 	  		<h1>Les règles : </h1>
 
@@ -63,6 +64,9 @@
             	</p>
             <a href="index.php" class="btn"><button type="submit" type="button" class="btn btn-info" >Retour</button></a>
 	  	</div>
+
+	  	<?php include("include/footer.php") ?>
+
 
 	</body>
 

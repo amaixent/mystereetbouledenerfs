@@ -18,6 +18,7 @@
 		<link href="css/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 	</head>
         <body>
+            <?php include("include/menu.php") ?>
 
             <section class="msg_affich">
                 <h1>Message : </h1>
@@ -38,6 +39,8 @@
                 <a href="creer_message.php" class="display_inline_b repondre"><button type="submit" type="button" class="btn btn-info" >Répondre</button></a>
 
             </section>
+
+            <?php include("include/footer.php") ?>
 
         </body>
 

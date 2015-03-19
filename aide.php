@@ -19,6 +19,7 @@
 	</head>
 
   <body>
+    <?php include("include/menu.php") ?>
     <section>
 
       <h2>Besoin d'aide?</h2>
@@ -43,6 +44,9 @@
       <a href="creer_message.php"><button type="submit" type="button" class="btn btn-info indice">Demander de l'aide</button></a>
 
     </section>
+    
+    <?php include("include/footer.php") ?>
+
   </body>
 </html>
 

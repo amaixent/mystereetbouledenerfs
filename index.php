@@ -69,6 +69,8 @@ if (!empty($_POST)) {
             </ul>
         </header>
 
+
+
         <nav>	
             <div class="titre">
                 <h1>Mystère et boule de nerf...</h1> 

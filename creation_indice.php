@@ -19,6 +19,7 @@
     </head>
 
     <body>
+        <?php include("include/menu.php") ?>
          <section class="indice_crea">
             <h1>Créer un indice </h1>
             <br>
@@ -44,6 +45,9 @@
          <a href="creation_enigme.php" class="btn_indic_pre">
             <button type="submit" type="button" class="btn btn-info">Précedent</button>
         </a>
+        
+        <?php include("include/footer.php") ?>
+
     </body>
 
 </html>
