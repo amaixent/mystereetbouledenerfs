@@ -18,10 +18,12 @@ switch ($mode) {
 
     //enregistrer un utilisateur
     case 'new_user':
-        //if ($_SESSION['login'] = false;){
-            enregistrer_user($nom_user, $mdp_user, $mail);
+        if (empty ( $_SESSION['login'] ) ){
 
-        //}
+            enregistrer_user($nom_user, $mdp_user, $mail);
+            
+        }
+ 
         header("location: index.php");
         exit();
         break;
