@@ -48,7 +48,7 @@ require ('main.inc.php');
                 À tout moment vous pouvez proposer une énigme depuis la barre de navigation.<br>
                 Attention vous ne devez proposer que des énigmes dont vous êtes l'auteur et dont l'image l'illustrant est libre de droit. 
                 En proposant une énigme vous nous autorisez à l'exploiter sur ce site.<br>  
-                Une énigme doit être composée d'un titre, d'une image (résolution 800x600), d'un ennoncé, d'une réponse en un mot et d'indices.
+                Une énigme doit être composée d'un titre, d'une image (libre de droit et de résolution correcte), d'un ennoncé, d'une réponse en un mot et d'indices.
             </p>
             <h3>Besoin d'aide sur une énigme : </h3>
             <p>

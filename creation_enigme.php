@@ -32,7 +32,7 @@ if (empty($_SESSION['login'])) {
                     <p>
                         1) Vous devez proposer une énigme dont vous êtes l'auteur. <br>
                         2) En proposant une énigme vous nous autorisez à l'exploiter sur ce site.<br>  
-                        3) L'image doit être libre de droit et de format 800x400.<br>
+                        3) L'image doit être libre de droit et de résolution correcte.<br>
                         4) La réponse de l'énigme doit être en un mot, sans majuscule et sans symbole.<br>
                         5) Vous devez cliquer sur suivant pour compléter les indices.<br>
                         <BR>
