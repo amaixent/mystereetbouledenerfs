@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>  
@@ -22,7 +23,7 @@
         <section class="inscription">
             <h1>Inscription</h1>
             <br>
-            <form action="traitement.php" method="post">
+            <form action="traitement.php?mode=new_user" method="post">
                 <div class="form-group">
                     <label for="nom_user">identifiant :</label>
                     <input type="text" class="form-control" id="nom_user" name="nom_user" required/>
