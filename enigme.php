@@ -1,6 +1,9 @@
 <?php
 session_start();
 require ('main.inc.php');
+if (empty($_SESSION['login'])) {
+    header("location: index.php?alert=deconnecte");
+}
 if (!empty($_POST)) {
     extract($_POST);
 }
