@@ -14,10 +14,11 @@ if (!empty($_POST)) {
     echo "mot de passe : $user_pwd <br>";
     
     $auth = authentifier_user($user_name);
-    foreach($auth as $truc){
-        echo $truc;
-    }
-    var_dump($auth);
+    
+    echo $id_user, $auth["mdp_user"];
+    
+    // ["id_user"]=> string(2) "22" ["mdp_user"]
+    
     $message = "";
     //traitement
     /*if ($user_pwd == md5($auth["mdp_user"])) {
