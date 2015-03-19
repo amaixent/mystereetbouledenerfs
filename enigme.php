@@ -55,11 +55,10 @@ if (!empty($_GET)) {
         </div>
         <div class="btn-aide">
             <a href="aide.php"><button type="submit" type="button" class="btn btn-default indice">Besoin d'aide</button></a>
-            <div>
+        </div>
 
-                <?php include("include/footer.php") ?>
+        <?php include("include/footer.php") ?>
 
-
-                </body>
-                </html>
+    </body>
+</html>
 
