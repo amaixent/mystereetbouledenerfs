@@ -10,12 +10,21 @@ if (!empty($_POST)) {
 if (!empty($_GET)) {
     extract($_GET);
 }
+
+//echo "code : ", $code;
+
+/*
+ * La variable $code est passée par l'adresse - c'est en fait l'id de l'énigme en cours
+ */
+$info_enigme = select_by_id("enigme", "id_enigme", $code);
+$info_auteur = select_by_id("user", "id_user", $info_enigme["auteur_id"]);
+$nom_auteur = $info_auteur["nom_user"];
 ?>
 <!DOCTYPE html>
 <html>
     <head>	
         <meta charset="utf-8"/>    
-        <title>Mystereetbouledenerf</title>
+        <title>Mystère et boule de nerfs</title>
         <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,14 +44,14 @@ if (!empty($_GET)) {
         <?php include("include/menu.php") ?>
 
         <div class="titre_enigme">
-            <h1>Ceci n'est pas Le titre d'une enigme</h1>
+            <h1><?php echo $info_enigme["titre"] ?></h1>
         </div>
 
         <div class="image">
             <img src="enigme/1/2.jpg" alt="Ceci est une enigme"/>
             <br>
-            <h1>Ceci n'est pas une enigme?</h1>
-            <p> auteur : pseudo_auteur</p>
+            <h1><?php echo $info_enigme["enonce"] ?></h1>
+            <p> Auteur : <?php echo $nom_auteur ?></p>
         </div>
 
         <div class="rep">
@@ -54,10 +63,10 @@ if (!empty($_GET)) {
                     <button type="submit" type="button" class="btn btn-info">Répondre</button>
                 </div>
             </form>  
-            <p>Cette énigme rapporte *** points.</p>
+            <p>Cette énigme rapporte <?php echo $info_enigme["point"] ?> points.</p>
         </div>
         <div class="btn-aide">
-            <a href="aide.php"><button type="submit" type="button" class="btn btn-default indice">Besoin d'aide</button></a>
+            <a href="aide.php"><button type="submit" type="button" class="btn btn-default indice">Besoin d'aide ?</button></a>
         </div>
 
         <?php include("include/footer.php") ?>

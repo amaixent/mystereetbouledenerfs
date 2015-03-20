@@ -4,6 +4,12 @@ require ('main.inc.php');
 if (empty($_SESSION['login'])) {
     header("location: index.php?alert=deconnecte");
 }
+
+/*
+ *GERER L'ENREGISTREMENT DE LA DATE / DE L'HEURE 
+ * 
+ */
+
 ?>
 <!DOCTYPE html>
 <html>

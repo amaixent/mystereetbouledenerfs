@@ -4,6 +4,26 @@ require ('main.inc.php');
 if (empty($_SESSION['login'])) {
     header("location: index.php?alert=deconnecte");
 }
+
+
+/*
+ *
+ * A FAIRE : MESSAGES ENVOYES 
+ * 
+ */
+
+
+
+//Sélection de tous les messages correspondant à $_SESSION["id_user"] (id du joueur)
+$messages = select_all("message", "idUser", $_SESSION["id_user"]);
+$messages_envoyes = select_all("message", "expediteur", $_SESSION["pseudo"]);
+
+/* echo '$messages : ';
+  var_dump($messages_envoyes); */
+
+/* Résultat de la forme    $message[0] -> tout le message 0
+ *                          $message[1] -> tout le message 1
+ */
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,26 +56,33 @@ if (empty($_SESSION['login'])) {
                     <div class="col-md-5">EXPÉDITEUR : </div>
                     <div class="col-md-4">| OBJET : </div>
                 </div>
+
+
+                <?php
+                if (!empty($messages)) {
+                    foreach ($messages as $message) {
+                        $id_message = $message['id_message'];
+                        $expediteur = $message['expediteur'];
+                        $objet = $message['objet'];
+                        echo <<<MESSAGE
                 <div class="row">
-                    <a href="afficher_message.php" >
+                    <a href="afficher_message.php?id=$id_message&mode=recu" >
                         <div class="col-md-5 message_non_lu">
-                            Pseudo_dd
+                            $expediteur
                         </div>
                         <div class="col-md-4 message_non_lu">
-                            Ceci est un objet
+                            $objet
                         </div>
                     </a>
                 </div>
-                <div class="row">
-                    <a href="afficher_message.php" >
-                        <div class="col-md-5 message_lu">
-                            Pseudo_dd
-                        </div>
-                        <div class="col-md-4 message_lu">
-                            Ceci est un objet
-                        </div>
-                    </a>
-                </div>
+MESSAGE;
+                    }
+                } else {
+                    echo "<div class='row'>
+                                Aucun message reçu.
+                            </div>";
+                }
+                ?>
             </div>
         </section>
         <section class="messagerie">
@@ -65,8 +92,37 @@ if (empty($_SESSION['login'])) {
                     <div class="col-md-5">EXPÉDITEUR : </div>
                     <div class="col-md-4">| OBJET : </div>
                 </div>
-                <p>Aucun message.</p>
+
+                <?php
+                if (!empty($messages_envoyes)) {
+                    foreach ($messages_envoyes as $message) {
+                        $id_message = $message['id_message'];
+                        $expediteur = $message['expediteur'];
+                        $objet = $message['objet'];
+                        echo <<<MESSAGE
+                <div class="row">
+                    <a href="afficher_message.php?id=$id_message&mode=envoye" >
+                        <div class="col-md-5 message_non_lu">
+                            $expediteur
+                        </div>
+                        <div class="col-md-4 message_non_lu">
+                            $objet
+                        </div>
+                    </a>
+                </div>
+MESSAGE;
+                    }
+                } else {
+                    echo "<div class='row'>
+                                Aucun message reçu.
+                            </div>";
+                }
+                ?>
             </div>
+
+
+
+
         </section>
         <?php include("include/footer.php") ?>
     </body>

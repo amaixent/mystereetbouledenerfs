@@ -47,17 +47,30 @@ if (isset($_POST) && !empty($_POST)) {
         <?php
         include("include/menu.php");
         if (isset($alert)) {
-            if($alert == "interdit"){
-                $avertissement = "L'accès à cette page est interdit !";
+            switch ($alert) {
+                case 'connectezvous':
+                    $avertissement = "Vous êtes enregistré, maintenant connectez vous !";
+                    break;
+                case 'interdit':
+                    $avertissement = "Attention ! L'accès à cette page est interdit !";
+                    break;
+                case 'deconnecte':
+                    $avertissement = "Accès interdit, veuillez vous connecter pour voir la page souhaitée.";
+                    break;
+                case 'enregistreruser':
+                    $avertissement = "Accès interdit, vous avez déjà un compte...";
+                    break;
+                case 'interditmessage':
+                    $avertissement = "Accès interdit, Le message auquel vous tentez d'accéder ne vous concerne pas.";
+                    break;
             }
-            if($alert == "deconnecte"){
-                $avertissement = "Accès interdit, veuillez vous connecter pour voir la page souhaitée.";
-            }
+
             echo "<div class='alert alert-warning'>
-                    <strong>Warning ! $avertissement</strong> 
+                    <strong>$avertissement</strong> 
                 </div>";
         }
         ?>
+        
         <nav>	
             <div class="titre">
                 <h1>Mystère et boule de nerf...</h1> 
@@ -66,8 +79,9 @@ if (isset($_POST) && !empty($_POST)) {
 
         <section>
             <p> Mystère et boule de nerf est un site d'énigmes participatif. 
-                Vous pouvez répondre aux énigmes et proposer vos propres énigmes pour faire avancer le développement du jeu.<br/> Avant de vous inscrire, 
-                merci de consulter les règles de fonctionement du site.</p>
+                Vous pouvez répondre aux énigmes et proposer vos propres énigmes pour faire avancer le développement du jeu.
+                <br/> Avant de vous inscrire, merci de consulter les règles de fonctionement du site.
+            </p>
             <a href="regles.php"> <button type="button" class="btn btn-info"> Les règles</button> </a>
         </section>
 
@@ -76,11 +90,11 @@ if (isset($_POST) && !empty($_POST)) {
             <!-- Formulaire se connecter-->
             <form method="post">
                 <div class="form-group">
-                    <label for="nom_user">identifiant :</label>
+                    <label for="nom_user">Identifiant :</label>
                     <input type="text" class="form-control" id="nom_user" name="nom_user" required/>
                 </div>
                 <div class="form-group">
-                    <label for="mdp_user">mot de passe :</label>
+                    <label for="mdp_user">Mot de passe :</label>
                     <input type="password" class="form-control" id="mdp_user" name="mdp_user" required/>
                 </div>
                 <div>
@@ -88,18 +102,13 @@ if (isset($_POST) && !empty($_POST)) {
                 </div>
             </form>
             <br>
-            <a class="MP_oubli" href="#" > mot de passe oublié?</a>
+            <a class="MP_oubli" href="#" > Mot de passe oublié ?</a>
             <br>
             <br>
             <a href="enregistrement.php"> <button type="button" class="btn btn-default">Inscription</button> </a>
         </section>
 
-        <footer class="conditions">
-            <p>
-                Maëlle Carlier & Alice Maixent<br>
-                IMAC 2014-2015 <br>
-            </p>
-        </footer>
+        <?php include("include/footer.php") ?>
 
 
         <a href="enregistrement.php">s'enregistrer</a>

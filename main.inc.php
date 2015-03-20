@@ -10,11 +10,14 @@ $nom_bdd = 'site_enigme';
 function enregistrer_user($nom_user, $mdp_user, $mail) {
     //$query = mysql_query("INSERT INTO $base.user (id_user, nom_user, mdp_user, mail, statut, idEnigme, point_user) VALUES (NULL, '$nom_user', '$mdp_user',  '$mail', 'joueur', '0', '10')");
     // :: car fonction "static"
-    $req = Database::get()->prepare_execute_add_up_del("INSERT INTO user (id_user, nom_user, mdp_user, mail, statut, idEnigme, point_user) VALUES (NULL, :nom_user, :mdp_user,  :mail, 'joueur', '0', '10')", 
+    $enigme = select_enigme_by_num(0);
+    $idEnigme = $enigme['idEnigme'];
+    $req = Database::get()->prepare_execute_add_up_del("INSERT INTO user (id_user, nom_user, mdp_user, mail, statut, :idEnigme, point_user) VALUES (NULL, :nom_user, :mdp_user,  :mail, 'joueur', '0', '10')", 
     array(
         'nom_user' => $nom_user,
         'mdp_user' => md5($mdp_user),
-        'mail' => $mail
+        'mail' => $mail,
+        'idEnigme' => $idEnigme
     ));
     return $req;
 }
@@ -50,10 +53,16 @@ function select_by_id($table, $idparam, $id) {
     return $req;
 }
 
-//Pas si 
+// pas forcément utile en fait mais on verra à la fin
 function select_by_id_notall($params, $table, $idparam, $id) {
     /* exemple : select_by_id_notall('point_user,idEnigme','user', 'id_user', 2) */
     $req = Database::get()->get_by_id_notall($params,$table, $idparam, $id);
+    return $req;
+}
+
+// avec idparam la colonne dont on a besoin pour rechercher et val la valeur de idparam
+function select_all($table, $idparam, $val){
+    $req = Database::get()->get_all($table, $idparam, $val);
     return $req;
 }
 
@@ -106,11 +115,18 @@ function modifier_enigme($id_enigme, $titre, $enonce, $image, $reponse, $point, 
     return $req;
 }
 
+function select_enigme_by_num($num_enigme){
+    $req = Database::get()->prepare_execute("SELECT id_enigme FROM enigme WHERE num_enigme = ?",array($num_enigme));
+    /*echo '<br> main.inc.php $req = ';
+    var_dump($req);*/
+    return $req;
+}
 
 function effacer_enigme($id_enigme) {
     $req = Database::get()->prepare_execute_add_up_del("DELETE FROM enigme WHERE id_enigme =?", array($id_enigme));
     return $req;
 }
+
 
 /* * ****************************
  * Ce qui concerne les indices
