@@ -42,15 +42,17 @@ if (empty($_SESSION['login'])) {
                         <h1>Créer une enigme </h1>
                         <br>
 
-                        <form  action="traitement.php" method="post" enctype="multipart/form-data">
+                        <form  action="traitement.php?mode=crea_enigme" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="titre">Titre :</label>
                                 <input type="text" class="form-control" id="titre" name="titre" required/>
                             </div>
                             <div class="form-group">
                                 <label for="ennonce">Ennoncé :</label>
-                                <textarea id="ennonce" class="form-control" name="ennonce"></textarea>
+                                <textarea id="ennonce" class="form-control" name="enonce"></textarea>
                             </div>
+                            <!--taille max= 1GO-->
+                            <input type="hidden" name="MAX_FILE_SIZE" value="1073741824" />
                             <div class="form-group">
                                 <!--image-->
                                 <label for="image">Image :</label>
@@ -66,11 +68,11 @@ if (empty($_SESSION['login'])) {
                             </div>
                             <div class="form-group">
                                 <label>Nombre d'indices : </label>
-                                <select class="form-control">
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                <select name="nb_indice"class="form-control">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
                                 </select>
                             </div>
                             <div class="form-group">

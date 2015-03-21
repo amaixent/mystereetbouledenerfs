@@ -45,5 +45,22 @@ switch ($mode) {
         header("location:enigme.php?code=$id");
         exit();
         break;
+    case 'crea_enigme' :
+        //fonction d'upload pour l'image
+        $upload1 = upload('image',$image,1073741824, array('png','gif','jpg','jpeg') );
+        if ($upload1) "Upload de l'icone réussi!<br />";
+
+        $image=$_FILES["image"]["name"];
+        //$image=$_FILES["image"]["tmp_name"];
+
+        //nom de l'auteur
+        if($optionsRadios=="option1"){
+            $auteur_id=$_SESSION ['id_user'];
+        }
+
+        enregistrer_enigme($titre, $enonce, $image, $reponse, $point, $num_enigme, $auteur_id);
+        header("location:creation_indice.php?nb_indice=$nb_indice");
+        exit();
+        break;
 }
 ?>

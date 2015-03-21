@@ -4,7 +4,16 @@ require ('main.inc.php');
 if (empty($_SESSION['login'])) {
     header("location: index.php?alert=deconnecte");
 }
+if (isset($_GET) && !empty($_GET)) {
+    extract($_GET);
+}
+
+if (isset($_POST) && !empty($_POST)) {
+    extract($_POST);
+}
+var_dump($nb_indice);
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>  
@@ -27,28 +36,13 @@ if (empty($_SESSION['login'])) {
 
     <body>
         <?php include("include/menu.php") ?>
-        <section class="indice_crea">
-            <h1>Créer un indice </h1>
-            <br>
 
-            <form action="traitement.php" method="post">
-                <div class="form-group">
-                    <label for="num_indice">Numéro de l'indice :</label>
-                    <input type="number" class="form-control" id="num_indice" name="num_indice" required/>
-                </div>
-                <div class="form-group">
-                    <label for="prix">Points :</label>
-                    <input type="number"  class="form-control" id="prix" name="prix" required/>
-                </div>
-                <div class="form-group">
-                    <label for="ennonce">Ennoncé :</label>
-                    <textarea id="ennonce"  class="form-control" name="ennonce" required></textarea>
-                </div>
-                <div class="button btn_indice ">
-                    <button type="submit" type="button" class="btn btn-info">Créer l'indice</button>
-                </div>
-            </form>
-        </section>
+        <?php
+        for ($i = 1; $i <= $nb_indice; $i++) {
+            include("include/nv_indice.php")
+    
+        }
+        ?>
         <a href="creation_enigme.php" class="btn_indic_pre">
             <button type="submit" type="button" class="btn btn-info">Précedent</button>
         </a>
