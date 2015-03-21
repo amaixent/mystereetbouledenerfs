@@ -219,6 +219,11 @@ section p {
     font-family: 'Shadows Into Light';
 
 }
+.btn_nv_message{
+    margin:5% 0% 0% 25%;
+
+}
+
 .messagerie{
     width: 50%;
     margin-bottom: 5%

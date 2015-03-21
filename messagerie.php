@@ -49,6 +49,7 @@ $messages_envoyes = select_all("message", "expediteur", $_SESSION["pseudo"]);
         <section class="bienvenue">
             <h1>Bienvenue sur votre messagerie.</h1>
         </section>
+        <a  href="creer_message.php" ><button type="submit" type="button" class="btn btn-info btn_nv_message" >Nouveau message</button></a>
         <section class="messagerie">
             <h3>Messages reçus : </h3>
             <div class="messagerie_contenu">
@@ -124,6 +125,7 @@ MESSAGE;
 
 
         </section>
+        
         <?php include("include/footer.php") ?>
     </body>
 
