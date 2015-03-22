@@ -14,13 +14,25 @@ class Database {
     }
 
     public function prepare_execute($_req, $_param = array()) {
+//    echo '<br>bdd $_req :';
+//        var_dump($_req);
+//    echo '<br>bdd $_param :';
+//        var_dump($_param);
         $stmt = $this->base->prepare($_req);
+//    echo '<br>$stmt :';
+//        var_dump($stmt);
         $stmt->execute($_param);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function prepare_execute_add_up_del($_req, $_param = array()) {
         $stmt = $this->base->prepare($_req);
+        echo '<br>$_param';
+        var_dump($_param);
+        echo '<br>$_req : ';
+          var_dump($_req);
+        echo '<br>$stmt : ';
+          var_dump($stmt);
         $stmt->execute($_param);
     }
 
@@ -39,12 +51,12 @@ class Database {
      */
 
     public function get_all($_table, $_param, $_val) {
-        /*echo '<br>$_table : ',$_table;
-        echo '<br>$_param : ',$_param;
-        echo '<br>$_val : ',$_val;*/
+        /* echo '<br>$_table : ',$_table;
+          echo '<br>$_param : ',$_param;
+          echo '<br>$_val : ',$_val; */
         $stmt = $this->prepare_execute('SELECT * FROM ' . $_table . ' WHERE ' . $_param . ' = :val', [':val' => $_val]);
-        /*echo '<br>$stmt : ';
-        var_dump($stmt);*/
+        /* echo '<br>$stmt : ';
+          var_dump($stmt); */
         return $stmt;
     }
 

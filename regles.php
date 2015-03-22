@@ -58,10 +58,6 @@ require ('main.inc.php');
                 Vous ne pourrez envoyer un massage pour demander de l'aide que si vous n'avez plus de points pour acheter des indices 
                 ou que vous avez acheté tous les indices de l'énigme. </p>
 
-            <h3>Se désinscrire :</h3>
-            <p>
-                Vous pouvez à tout moment vous désinscrire en cliquant sur <a class="MP_oubli" href="#">ce lien</a>.
-            </p>
             <h3>Nous contacter :</h3>
             <p> 
                 À tout moment si vous avez un problème dans le jeu ou des remarques, vous pouvez nous envoyer depuis votre messagerie un message  à : pseudo-aide.

@@ -3,21 +3,24 @@ session_start();
 require ('main.inc.php');
 
 //enregistrer_user("User7775654", "md77rgs7p", "mai7fgdfg77l@mail.com");
-$message = "";
 if (isset($_GET) && !empty($_GET)) {
     extract($_GET);
 }
 if (isset($_POST) && !empty($_POST)) {
     //lecture des paramètres
-
+    //var_dump($_POST['nom_user']);
     $auth = authentifier_user($_POST['nom_user']);
-    //traitement
-    if (md5($_POST['mdp_user']) == $auth[0]["mdp_user"]) {
-        $_SESSION['login'] = true;
-        $_SESSION['pseudo'] = $_POST['nom_user'];
-        $_SESSION['id_user'] = $auth[0]["id_user"];
-        header("location:traitement.php?mode=acceder_enigme");
-        exit();
+    if (!empty($auth)) {
+        //traitement
+        if (md5($_POST['mdp_user']) == $auth[0]["mdp_user"]) {
+            $_SESSION['login'] = true;
+            $_SESSION['pseudo'] = $_POST['nom_user'];
+            $_SESSION['id_user'] = $auth[0]["id_user"];
+            header("location:traitement.php?mode=acceder_enigme");
+            exit();
+        } else {
+            $message = "INCORRECT, veuillez vous ré-identifier ";
+        }
     } else {
         $message = "INCORRECT, veuillez vous ré-identifier ";
     }
@@ -63,6 +66,9 @@ if (isset($_POST) && !empty($_POST)) {
                 case 'interditmessage':
                     $avertissement = "Accès interdit, Le message auquel vous tentez d'accéder ne vous concerne pas.";
                     break;
+                case 'desinscrit':
+                    $avertissement = "Vous êtes maintenant désinscrit.";
+                    break;
             }
 
             echo "<div class='alert alert-warning'>
@@ -70,7 +76,7 @@ if (isset($_POST) && !empty($_POST)) {
                 </div>";
         }
         ?>
-        
+
         <nav>	
             <div class="titre">
                 <h1>Mystère et boule de nerf...</h1> 
@@ -85,28 +91,50 @@ if (isset($_POST) && !empty($_POST)) {
             <a href="regles.php"> <button type="button" class="btn btn-info"> Les règles</button> </a>
         </section>
 
-        <section>
-            <?php echo "<p>$message</p>"; ?>
-            <!-- Formulaire se connecter-->
-            <form method="post">
-                <div class="form-group">
-                    <label for="nom_user">Identifiant :</label>
-                    <input type="text" class="form-control" id="nom_user" name="nom_user" required/>
-                </div>
-                <div class="form-group">
-                    <label for="mdp_user">Mot de passe :</label>
-                    <input type="password" class="form-control" id="mdp_user" name="mdp_user" required/>
-                </div>
-                <div>
-                    <button type="submit" type="button" class="btn btn-info" >Connexion</button>
-                </div>
-            </form>
-            <br>
-            <a class="MP_oubli" href="#" > Mot de passe oublié ?</a>
-            <br>
-            <br>
-            <a href="enregistrement.php"> <button type="button" class="btn btn-default">Inscription</button> </a>
-        </section>
+
+        <?php
+        if (empty($_SESSION['login'])) {
+            ?>
+            <section>
+                <?php
+                if (!empty($message)) {
+                    echo "<p class = 'alert alert-warning'>$message</p>";
+                }
+                ?>
+                <!-- Formulaire se connecter-->
+                <form method="post">
+                    <div class="form-group">
+                        <label for="nom_user">Identifiant :</label>
+                        <input type="text" class="form-control" id="nom_user" name="nom_user" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="mdp_user">Mot de passe :</label>
+                        <input type="password" class="form-control" id="mdp_user" name="mdp_user" required/>
+                    </div>
+                    <div>
+                        <button type="submit" type="button" class="btn btn-info" >Connexion</button>
+                    </div>
+                </form>
+                <br>
+                <a class="MP_oubli" href="#" > Mot de passe oublié ?</a>
+                <br>
+                <br>
+                <a href="enregistrement.php"> <button type="button" class="btn btn-default">Inscription</button> </a>
+            </section>
+
+            <?php
+        }
+
+        if (!empty($_SESSION['login'])) {
+            ?>
+            <section>
+                <h3>Se désinscrire :</h3>
+                <p>
+                    ATTENTION : action irréversible <br />
+                    Vous pouvez à tout moment vous désinscrire en cliquant sur <a class="MP_oubli" href="traitement1.php?mode=desinscription">ce lien</a>.
+                </p>
+            </section>
+        <?php } ?>
 
         <?php include("include/footer.php") ?>
 

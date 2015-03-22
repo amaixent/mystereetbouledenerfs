@@ -10,14 +10,14 @@ $nom_bdd = 'site_enigme';
 function enregistrer_user($nom_user, $mdp_user, $mail) {
     //$query = mysql_query("INSERT INTO $base.user (id_user, nom_user, mdp_user, mail, statut, idEnigme, point_user) VALUES (NULL, '$nom_user', '$mdp_user',  '$mail', 'joueur', '0', '10')");
     // :: car fonction "static"
-    $enigme = select_enigme_by_num(0);
-    $idEnigme = $enigme['idEnigme'];
-    $req = Database::get()->prepare_execute_add_up_del("INSERT INTO user (id_user, nom_user, mdp_user, mail, statut, :idEnigme, point_user) VALUES (NULL, :nom_user, :mdp_user,  :mail, 'joueur', '0', '10')", 
+    /*$enigme = select_enigme_by_num(0);
+    var_dump($enigme);
+    $idEnigme = $enigme[0]['id_enigme'];*/
+    $req = Database::get()->prepare_execute_add_up_del("INSERT INTO user (id_user, nom_user, mdp_user, mail, statut, idEnigme, point_user) VALUES (NULL, :nom_user, :mdp_user,  :mail, 'joueur', '0', '10')", 
     array(
         'nom_user' => $nom_user,
         'mdp_user' => md5($mdp_user),
-        'mail' => $mail,
-        'idEnigme' => $idEnigme
+        'mail' => $mail
     ));
     return $req;
 }
@@ -38,11 +38,13 @@ function modifier_user($id_user, $nom_user, $mdp_user, $mail, $statut, $idEnigme
 }
 
 function authentifier_user($nom_user) {
-    //SELECT `id_user`, `mdp_user` FROM `user` WHERE `nom_user`='pseudo';
+//    SELECT `id_user`, `mdp_user` FROM `user` WHERE `nom_user`='pseudo';
+//    echo '<br>main authentifier_user - nomuser :';
+//       var_dump($nom_user);
     //On prépare la requête car une variable est présente dedans, cela pour éviter les injections
     $req = Database::get()->prepare_execute("SELECT id_user, mdp_user FROM user WHERE nom_user = ?", array($nom_user));
-    /*echo '$req - authentifier_user :';
-    var_dump($req);*/
+//    echo '<br>main $req - authentifier_user :';
+//    var_dump($req);
     // le ? est remplacé par la variable $nom_user
     return $req;
 }
