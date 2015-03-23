@@ -2,5 +2,5 @@ Attention - projet PHP énigmes
 
 -> vérifier qu'il n'y ait pas 2 pseudos pareils !
 -> changer tous les title
-
+Lalala
 faire une fonction qui affiche bien la date et l'heure
