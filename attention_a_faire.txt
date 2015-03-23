@@ -11,3 +11,43 @@ coucou je fais une modif - Alice
 Lalala
 faire une fonction qui affiche bien la date et l'heure
 >>>>>>> 2175eac3b36578c65178e671c5fabafe4d496a91
+
+
+
+        /*$dir2save = $_SERVER['DOCUMENT_ROOT']."/mystereetbouledenerfs/img";*/
+     
+  
+        //$ext = 'jpg';
+        //$path_parts = pathinfo($_FILES[$image]["name"]);
+       // echo $path_parts['basename'];
+        //$fichier=$path_parts['basename']
+        //var_dump($_FILES["image"]);
+     /*   $p=basename($_FILES["image"]["name"],".jpg");
+        $p=basename($_FILES["image"]["name"],".png");
+        $p=basename($_FILES["image"]["name"],".gif");
+        $p=basename($_FILES["image"]["name"],".jpeg");
+
+        //$path_parts['filename'];
+        
+        echo("p= $p");
+        $i = 1;
+        $completename = $dir2save . '/' .$_FILES["image"]["name"];
+   
+    echo("<br> completname =  $completename <br>");*/
+    /*
+        while (file_exists($completename)) {
+            $completename = $dir2save . '/' . $fichier .'('. $i . ').' . $ext;
+            $i++;
+        }*/
+
+       // $destination = $completename;
+     
+
+        $destination=$_SERVER['DOCUMENT_ROOT']."/mystereetbouledenerfs/img/".$_FILES["image"]["name"];
+        //echo(" destination =  $destination");
+        //fonction d'upload pour l'image
+        $upload1 = upload('image',$destination,1073741824, array('png','gif','jpg','jpeg') );
+        /* if($upload1)
+         {
+            echo("C'est bon!!");
+         }*/
