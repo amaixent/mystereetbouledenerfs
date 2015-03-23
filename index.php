@@ -69,6 +69,11 @@ if (isset($_POST) && !empty($_POST)) {
                 case 'desinscrit':
                     $avertissement = "Vous êtes maintenant désinscrit.";
                     break;
+                case 'enigmeok':
+                    $avertissement = "Votre énigme est enregistrée. Merci de votre aide !";
+                    break;
+                
+                
             }
 
             echo "<div class='alert alert-warning'>

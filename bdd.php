@@ -27,12 +27,12 @@ class Database {
 
     public function prepare_execute_add_up_del($_req, $_param = array()) {
         $stmt = $this->base->prepare($_req);
-        echo '<br>$_param';
-        var_dump($_param);
-        echo '<br>$_req : ';
-          var_dump($_req);
-        echo '<br>$stmt : ';
-          var_dump($stmt);
+//        echo '<br>$_param';
+//        var_dump($_param);
+//        echo '<br>$_req : ';
+//          var_dump($_req);
+//        echo '<br>$stmt : ';
+//          var_dump($stmt);
         $stmt->execute($_param);
     }
 

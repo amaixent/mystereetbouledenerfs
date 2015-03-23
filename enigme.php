@@ -4,10 +4,10 @@ require ('main.inc.php');
 if (empty($_SESSION['login'])) {
     header("location: index.php?alert=deconnecte");
 }
-if (!empty($_POST)) {
+if (isset($_POST) && !empty($_POST)) {
     extract($_POST);
 }
-if (!empty($_GET)) {
+if (isset($_GET)  && !empty($_GET)) {
     extract($_GET);
 }
 
@@ -19,6 +19,30 @@ if (!empty($_GET)) {
 $info_enigme = select_by_id("enigme", "id_enigme", $code);
 $info_auteur = select_by_id("user", "id_user", $info_enigme["auteur_id"]);
 $nom_auteur = $info_auteur["nom_user"];
+$info_user = select_by_id("user", "id_user", $_SESSION["id_user"]);
+$nb_point_user = $info_user["point_user"];
+
+
+/*
+ * Réponse à l'énigme
+ */
+
+if(isset($reponse) && !empty($reponse)){
+    if($reponse == $info_enigme["reponse"]){$select = select_by_id("user", "id_user", $_SESSION['id_user']);
+        $nb_point_user += $info_enigme["point"];
+        $num = $info_enigme["num_enigme"];
+        $num++;
+        $enigme = select_enigme_by_num($num);
+        //echo '<br>$enigme : select by num';
+        //var_dump($enigme);
+        $id = $enigme[0]["id_enigme"];
+        extract($info_user);
+        modifier_user($_SESSION["id_user"], $nom_user, $mdp_user, $mail, $statut, $num, $nb_point_user);
+        
+        header("location:enigme.php?code=$id");
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,7 +72,10 @@ $nom_auteur = $info_auteur["nom_user"];
         </div>
 
         <div class="image">
-            <img src="enigme/1/2.jpg" alt="Ceci est une enigme"/>
+            <?php 
+            $image = $info_enigme["image"];
+            echo "<img src='img/$image' alt='Ceci est une enigme'/>";
+            ?>
             <br>
             <h1><?php echo $info_enigme["enonce"] ?></h1>
             <p> Auteur : <?php echo $nom_auteur ?></p>
@@ -56,7 +83,7 @@ $nom_auteur = $info_auteur["nom_user"];
 
         <div class="rep">
             <!-- Formulaire répondre à une enigme-->
-            <form action="traitement.php" method="post" class="form-inline">
+            <form method="post" class="form-inline">
                 <div class="form-group ">
                     <label for="reponse">Réponse :</label>
                     <input type="text" class="form-control " id="reponse" name="reponse" required/>

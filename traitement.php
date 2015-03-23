@@ -57,12 +57,12 @@ switch ($mode) {
         if($optionsRadios=="option1"){
             $auteur_id=$_SESSION ['id_user'];
         }
-
+        
         enregistrer_enigme($titre, $enonce, $image, $reponse, $point, $num_enigme, $auteur_id);
         $enigme=NULL;
         $enigme=select_enigme_titre_enonce($titre, $enonce);
         $id_enigme=$enigme[0]['id_enigme'];
-        header('Location: http://localhost:8888/mystereetbouledenerfs/creation_indice.php?id_enigme=$id_enigme');
+        header("Location:creation_indice.php?id_enigme=$id_enigme&nb_indice=$nb_indice");
         exit();
         break;
         
@@ -74,5 +74,16 @@ switch ($mode) {
         header("location:index.php?alert=desinscrit");
         exit();
         break;
+    
+    case 'crea_indice' :
+        echo 'id enigme : ',$id_enigme;
+        for($i=0; $i<$nb_indice; $i++){
+            enregistrer_indice($num_indice[$i], $prix[$i], $enonce[$i], $id_enigme);
+        }
+        header("location:index.php?alert=enigmeok");
+        exit();
+        break;
+        
+    
 }
 ?>
