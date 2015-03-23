@@ -45,6 +45,7 @@ switch ($mode) {
         header("location:enigme.php?code=$id");
         exit();
         break;
+/*
     case 'crea_enigme' :
         //fonction d'upload pour l'image
         $upload1 = upload('image',$image,1073741824, array('png','gif','jpg','jpeg') );
@@ -57,19 +58,24 @@ switch ($mode) {
         if($optionsRadios=="option1"){
             $auteur_id=$_SESSION ['id_user'];
         }
-
         enregistrer_enigme($titre, $enonce, $image, $reponse, $point, $num_enigme, $auteur_id);
         header("location:creation_indice.php?nb_indice=$nb_indice");
         exit();
-        break;
-        
-        
-    case 'desinscription' :
-        effacer_user($_SESSION ['id_user']);
-        $_SESSION['login'] = false;
-        session_destroy();
-        header("location:index.php?alert=desinscrit");
+        break;*/
+
+   /* case 'crea_indice' :
+    echo "<br> coucou ";
+        var_dump($num_indice);
+        var_dump($prix);
+        var_dump($enonce);
+        var_dump($idEnigme)
+        echo "<br> coucou!! ";
+
+            enregistrer_indice($num_indice, $prix, $enonce, $idEnigme);
+
+        header("location:index.php");
         exit();
         break;
+        */
 }
 ?>

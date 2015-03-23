@@ -124,6 +124,17 @@ function select_enigme_by_num($num_enigme){
     return $req;
 }
 
+function select_enigme_titre_enonce($titre, $enonce){
+    $req = Database::get()->prepare_execute("SELECT id_enigme FROM enigme WHERE titre = :titre AND enonce = :enonce",   
+     array(
+        'titre' => $titre,
+        'enonce' => $enonce
+    ));
+    /*echo '<br> main.inc.php $req = ';
+    var_dump($req);*/
+    return $req;
+}
+
 function effacer_enigme($id_enigme) {
     $req = Database::get()->prepare_execute_add_up_del("DELETE FROM enigme WHERE id_enigme =?", array($id_enigme));
     return $req;
