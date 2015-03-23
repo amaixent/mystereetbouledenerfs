@@ -22,7 +22,7 @@ if (isset($_POST) && !empty($_POST)) {
         <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!--<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />-->
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>

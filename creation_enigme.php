@@ -48,7 +48,7 @@ if (empty($_SESSION['login'])) {
                                 <input type="text" class="form-control" id="titre" name="titre" required/>
                             </div>
                             <div class="form-group">
-                                <label for="ennonce">Ennoncé :</label>
+                                <label for="ennonce">Enoncé :</label>
                                 <textarea id="ennonce" class="form-control" name="enonce"></textarea>
                             </div>
                             <!--taille max= 1GO-->
