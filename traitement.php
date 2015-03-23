@@ -49,7 +49,7 @@ switch ($mode) {
         //fonction d'upload pour l'image
         $upload1 = upload('image',$image,1073741824, array('png','gif','jpg','jpeg') );
         if ($upload1) "Upload de l'icone réussi!<br />";
-
+        //var_dump($_FILES["image"]);
         $image=$_FILES["image"]["name"];
         //$image=$_FILES["image"]["tmp_name"];
 
@@ -59,7 +59,19 @@ switch ($mode) {
         }
 
         enregistrer_enigme($titre, $enonce, $image, $reponse, $point, $num_enigme, $auteur_id);
-        header("location:creation_indice.php?nb_indice=$nb_indice");
+        $enigme=NULL;
+        $enigme=select_enigme_titre_enonce($titre, $enonce);
+        $id_enigme=$enigme[0]['id_enigme'];
+        header('Location: http://localhost:8888/mystereetbouledenerfs/creation_indice.php?id_enigme=$id_enigme');
+        exit();
+        break;
+        
+        
+    case 'desinscription' :
+        effacer_user($_SESSION ['id_user']);
+        $_SESSION['login'] = false;
+        session_destroy();
+        header("location:index.php?alert=desinscrit");
         exit();
         break;
 }
