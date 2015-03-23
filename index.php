@@ -136,7 +136,7 @@ if (isset($_POST) && !empty($_POST)) {
                 <h3>Se désinscrire :</h3>
                 <p>
                     ATTENTION : action irréversible <br />
-                    Vous pouvez à tout moment vous désinscrire en cliquant sur <a class="MP_oubli" href="traitement1.php?mode=desinscription">ce lien</a>.
+                    Vous pouvez à tout moment vous désinscrire en cliquant sur <a class="MP_oubli" href="traitement.php?mode=desinscription">ce lien</a>.
                 </p>
             </section>
         <?php } ?>
