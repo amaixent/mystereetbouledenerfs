@@ -80,6 +80,7 @@ switch ($mode) {
         for($i=0; $i<$nb_indice; $i++){
             enregistrer_indice($num_indice[$i], $prix[$i], $enonce[$i], $id_enigme);
         }
+        
         header("location:index.php?alert=enigmeok");
         exit();
         break;
