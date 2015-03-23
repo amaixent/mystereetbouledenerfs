@@ -2,7 +2,12 @@ Attention - projet PHP énigmes
 
 -> vérifier qu'il n'y ait pas 2 pseudos pareils !
 -> changer tous les title
+<<<<<<< HEAD
 
 faire une fonction qui affiche bien la date et l'heure
 
 coucou je fais une modif - Alice
+=======
+Lalala
+faire une fonction qui affiche bien la date et l'heure
+>>>>>>> 2175eac3b36578c65178e671c5fabafe4d496a91
