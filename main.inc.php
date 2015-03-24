@@ -8,12 +8,8 @@ $nom_bdd = 'site_enigme';
  */
 
 function enregistrer_user($nom_user, $mdp_user, $mail) {
-    //$query = mysql_query("INSERT INTO $base.user (id_user, nom_user, mdp_user, mail, statut, idEnigme, point_user) VALUES (NULL, '$nom_user', '$mdp_user',  '$mail', 'joueur', '0', '10')");
-    // :: car fonction "static"
-    /*$enigme = select_enigme_by_num(0);
-    var_dump($enigme);
-    $idEnigme = $enigme[0]['id_enigme'];*/
-    $req = Database::get()->prepare_execute_add_up_del("INSERT INTO user (id_user, nom_user, mdp_user, mail, statut, idEnigme, point_user) VALUES (NULL, :nom_user, :mdp_user,  :mail, 'joueur', '0', '10')", 
+
+    $req = Database::get()->prepare_execute_add_up_del("INSERT INTO user (id_user, nom_user, mdp_user, mail, statut, idEnigme, point_user, indice_achete) VALUES (NULL, :nom_user, :mdp_user,  :mail, 'joueur', '0', '10', '0')", 
     array(
         'nom_user' => $nom_user,
         'mdp_user' => md5($mdp_user),
@@ -22,9 +18,9 @@ function enregistrer_user($nom_user, $mdp_user, $mail) {
     return $req;
 }
 
-function modifier_user($id_user, $nom_user, $mdp_user, $mail, $statut, $idEnigme, $point_user) {
+function modifier_user($id_user, $nom_user, $mdp_user, $mail, $statut, $idEnigme, $point_user, $indice_achete) {
 
-    $req = Database::get()->prepare_execute_add_up_del("UPDATE user SET nom_user = :nom_user, mdp_user = :mdp_user, mail = :mail, statut = :statut, idEnigme = :idEnigme, point_user = :point_user WHERE id_user = :id_user", 
+    $req = Database::get()->prepare_execute_add_up_del("UPDATE user SET nom_user = :nom_user, mdp_user = :mdp_user, mail = :mail, statut = :statut, idEnigme = :idEnigme, point_user = :point_user, indice_achete = :indice_achete WHERE id_user = :id_user", 
     array(
         'nom_user' => $nom_user,
         'mdp_user' => $mdp_user,
@@ -32,19 +28,16 @@ function modifier_user($id_user, $nom_user, $mdp_user, $mail, $statut, $idEnigme
         'statut' => $statut,
         'idEnigme' => $idEnigme,
         'point_user' => $point_user,
-        'id_user' => $id_user
+        'id_user' => $id_user,
+        'indice_achete' => $indice_achete
     ));
     return $req;
 }
 
 function authentifier_user($nom_user) {
-//    SELECT `id_user`, `mdp_user` FROM `user` WHERE `nom_user`='pseudo';
-//    echo '<br>main authentifier_user - nomuser :';
-//       var_dump($nom_user);
+
     //On prépare la requête car une variable est présente dedans, cela pour éviter les injections
     $req = Database::get()->prepare_execute("SELECT id_user, mdp_user FROM user WHERE nom_user = ?", array($nom_user));
-//    echo '<br>main $req - authentifier_user :';
-//    var_dump($req);
     // le ? est remplacé par la variable $nom_user
     return $req;
 }
@@ -119,8 +112,6 @@ function modifier_enigme($id_enigme, $titre, $enonce, $image, $reponse, $point, 
 
 function select_enigme_by_num($num_enigme){
     $req = Database::get()->prepare_execute("SELECT id_enigme FROM enigme WHERE num_enigme = ?",array($num_enigme));
-    /*echo '<br> main.inc.php $req = ';
-    var_dump($req);*/
     return $req;
 }
 
@@ -130,8 +121,6 @@ function select_enigme_titre_enonce($titre, $enonce){
         'titre' => $titre,
         'enonce' => $enonce
     ));
-    /*echo '<br> main.inc.php $req = ';
-    var_dump($req);*/
     return $req;
 }
 
