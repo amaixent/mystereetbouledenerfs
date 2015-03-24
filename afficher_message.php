@@ -67,7 +67,7 @@ echo <<<MESSAGE
                 <p>$texte</p>
             </div>
             <a href="messagerie.php" class="display_inline_b"><button type="submit" type="button" class="btn btn-info" >Retour</button></a>
-            <a href="creer_message.php" class="display_inline_b repondre"><button type="submit" type="button" class="btn btn-info" >Répondre</button></a>
+            <!--<a href="creer_message.php" class="display_inline_b repondre"><button type="submit" type="button" class="btn btn-info" >Répondre</button></a>-->
 
         </section>
 MESSAGE;

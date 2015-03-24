@@ -45,7 +45,7 @@ require ('main.inc.php');
                         <a href="traitement.php"><button type="submit" type="button" class="btn btn-info indice">Acheter</button></a>
                     </div>
 
-                    <a href="creer_message.php"><button type="submit" type="button" class="btn btn-info indice">Demander de l'aide</button></a>
+                    <a href="creer_message.php?mode=aide"><button type="submit" type="button" class="btn btn-info indice">Demander de l'aide</button></a>
 
                     </section>
 

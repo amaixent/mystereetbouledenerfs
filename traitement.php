@@ -122,5 +122,16 @@ switch ($mode) {
         header("location:index.php?alert=enigmeok");
         exit();
         break;
+        
+    case 'envoi_message':
+        // $objet $destinataire $message
+        $date = date("Y-m-d H:i:s");
+        $lu = 0;
+        $image = NULL;
+        $info_dest = authentifier_user($destinataire);
+        $id_dest = $info_dest[0]["id_user"];
+        enregistrer_message($objet, $destinataire, $_SESSION["pseudo"], $texte, $date, $lu, $image, $id_dest);
+        header("location:messagerie.php");
+        break;
 }
 ?>

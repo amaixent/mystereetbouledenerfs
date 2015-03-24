@@ -5,11 +5,20 @@ if (empty($_SESSION['login'])) {
     header("location: index.php?alert=deconnecte");
 }
 
+if (isset($_GET) && !empty($_GET)) {
+    extract($_GET);
+}
+if (isset($_POST) && !empty($_POST)) {
+    extract($_POST);
+}
+
+
+
+
 /*
- *GERER L'ENREGISTREMENT DE LA DATE / DE L'HEURE 
+ * GERER L'ENREGISTREMENT DE LA DATE / DE L'HEURE 
  * 
  */
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,18 +43,33 @@ if (empty($_SESSION['login'])) {
         <?php include("include/menu.php") ?>
         <section class="message">
             <!-- Formulaire message-->
-            <form action="traitement.php" method="post" enctype="multipart/form-data">
+            <form action="traitement.php?mode=envoi_message" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="objet">Objet :</label>
                     <input type="text" class="form-control" id="objet" name="objet" required/>
                 </div>
+
+                <?php
+                if (isset($mode) && !empty($mode)) {
+                    
+                    if ($mode == "new") {
+                        echo <<<FORM
                 <div class="form-group">
-                    <label for="dest">Pseudo du destinataire :</label>
-                    <input type="text" class="form-control" id="dest" name="dest" required/>
+                    <label for="destinataire">Pseudo du destinataire :</label>
+                    <input type="text" class="form-control" id="destinataire" name="destinataire" required/>
                 </div>
+FORM;
+                    } else{
+                                                echo <<<FORM
+                    <input type="hidden" class="form-control" id="destinataire" name="destinataire" value = "Alichou"/>
+FORM;
+                    }
+                }
+                ?>
+
                 <div class="form-group">
-                    <label for="message">Message :</label>
-                    <textarea id="message" class="form-control" name="message" required></textarea>
+                    <label for="texte">Message :</label>
+                    <textarea id="texte" class="form-control" name="texte" required></textarea>
                 </div>
                 <div class="button">
                     <button type="submit" type="button" class="btn btn-info">Envoyer</button>

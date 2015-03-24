@@ -49,7 +49,7 @@ $messages_envoyes = select_all("message", "expediteur", $_SESSION["pseudo"]);
         <section class="bienvenue">
             <h1>Bienvenue sur votre messagerie.</h1>
         </section>
-        <a  href="creer_message.php" ><button type="submit" type="button" class="btn btn-info btn_nv_message" >Nouveau message</button></a>
+        <a  href="creer_message.php?mode=new" ><button type="submit" type="button" class="btn btn-info btn_nv_message" >Nouveau message</button></a>
         <section class="messagerie">
             <h3>Messages reçus : </h3>
             <div class="messagerie_contenu">
@@ -90,7 +90,7 @@ MESSAGE;
             <h3>Messages envoyés : </h3>
             <div class="messagerie_contenu">
                 <div class="row">
-                    <div class="col-md-5">EXPÉDITEUR : </div>
+                    <div class="col-md-5">DESTINATAIRE : </div>
                     <div class="col-md-4">| OBJET : </div>
                 </div>
 
@@ -98,13 +98,13 @@ MESSAGE;
                 if (!empty($messages_envoyes)) {
                     foreach ($messages_envoyes as $message) {
                         $id_message = $message['id_message'];
-                        $expediteur = $message['expediteur'];
+                        $destinataire = $message['destinataire'];
                         $objet = $message['objet'];
                         echo <<<MESSAGE
                 <div class="row">
                     <a href="afficher_message.php?id=$id_message&mode=envoye" >
                         <div class="col-md-5 message_non_lu">
-                            $expediteur
+                            $destinataire
                         </div>
                         <div class="col-md-4 message_non_lu">
                             $objet
