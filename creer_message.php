@@ -60,8 +60,8 @@ if (isset($_POST) && !empty($_POST)) {
                 </div>
 FORM;
                     } else{
-                                                echo <<<FORM
-                    <input type="hidden" class="form-control" id="destinataire" name="destinataire" value = "Alichou"/>
+                        echo <<<FORM
+                    <input type="hidden" class="form-control" id="destinataire" name="destinataire" value = "Ausecours"/>
 FORM;
                     }
                 }

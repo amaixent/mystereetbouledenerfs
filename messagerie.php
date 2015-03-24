@@ -115,7 +115,7 @@ MESSAGE;
                     }
                 } else {
                     echo "<div class='row'>
-                                Aucun message reçu.
+                                Aucun message envoyé.
                             </div>";
                 }
                 ?>
