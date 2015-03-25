@@ -50,7 +50,7 @@ if (isset($_POST) && !empty($_POST)) {
                     <input type="number" class="form-control" id="num_indice" name="num_indice[$i]" value="$num" required/>
                 </div>
                 <div class="form-group">
-                    <label for="prix">Points :</label>
+                    <label for="prix">Points (minimum 2) :</label>
                     <input type="number"  class="form-control" id="prix" name="prix[$i]" required/>
                 </div>
                 <div class="form-group">

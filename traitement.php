@@ -48,20 +48,20 @@ switch ($mode) {
     case 'crea_enigme' :
 
         //Pour éviter d'écraser les doublons si 2 images chargées ont le même nom    
-        $dir2save = $_SERVER['DOCUMENT_ROOT']."/mystereetbouledenerfs/img"; 
+        $dir2save = $_SERVER['DOCUMENT_ROOT'] . "/mystereetbouledenerfs/img";
         $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
         echo("esxtension = $ext");
         $fichier = pathinfo($_FILES['image']['name'], PATHINFO_FILENAME);
         $i = 1;
-        $completename = $dir2save . '/' .$_FILES["image"]["name"];
+        $completename = $dir2save . '/' . $_FILES["image"]["name"];
 
         $image = $_FILES["image"]["name"];
-    
+
         while (file_exists($completename)) {
-          $completename = $dir2save . '/' . $fichier .'('. $i . ').' . $ext;
-          $image = $fichier .'('. $i . ').' . $ext;
-          $i++;
-          } 
+            $completename = $dir2save . '/' . $fichier . '(' . $i . ').' . $ext;
+            $image = $fichier . '(' . $i . ').' . $ext;
+            $i++;
+        }
         echo("<br> completname après le while =  $completename <br>");
 
         $destination = $completename;
@@ -79,12 +79,12 @@ switch ($mode) {
         $enigme = NULL;
         $enigme = select_enigme_titre_enonce($titre, $enonce);
         $id_enigme = $enigme[0]['id_enigme'];
-        if($nb_indice == 0){
-           header("Location:index.php?alert=enigmeok");
-        }else{
-           header("Location:creation_indice.php?id_enigme=$id_enigme&nb_indice=$nb_indice");
+        if ($nb_indice == 0) {
+            header("Location:index.php?alert=enigmeok");
+        } else {
+            header("Location:creation_indice.php?id_enigme=$id_enigme&nb_indice=$nb_indice");
         }
-            
+
 
         exit();
         break;
@@ -107,7 +107,7 @@ switch ($mode) {
         header("location:index.php?alert=enigmeok");
         exit();
         break;
-        
+
     case 'envoi_message':
         // $objet $destinataire $message
         $date = date("Y-m-d H:i:s");
@@ -117,6 +117,28 @@ switch ($mode) {
         $id_dest = $info_dest[0]["id_user"];
         enregistrer_message($objet, $destinataire, $_SESSION["pseudo"], $texte, $date, $lu, $image, $id_dest);
         header("location:messagerie.php");
+        break;
+
+    case 'acheter_indice':
+        //$id_indice
+        //$_SESSION["id_user"]
+        /*
+         * A faire : vérifier si le joueur a assez de points
+         * Si oui, enlever le prix de l'indice au total de points, update colonne indice_achete dans user puis rediriger pour afficher
+         * si non, rediriger avec message d'erreur et afficher bouton "demander de l'aide"
+         */
+        $info_user = select_by_id("user", "id_user", $_SESSION["id_user"]);
+        $info_indice = select_by_id("indice", "id_indice", $id_indice);
+        extract($info_user);
+        $id_enigme = $info_indice["idEnigme"];
+        if($point_user > $info_indice["prix"]){
+            $point_user -= $info_indice["prix"];
+            $indice_achete ++;
+            modifier_user($id_user, $nom_user, $mdp_user, $mail, $statut, $idEnigme, $point_user, $indice_achete);
+        } else {
+            header("location:aide.php?code=$id_enigme&alert=pauvre");
+        }
+        header("location:aide.php?code=$id_enigme");
         break;
 }
 ?>

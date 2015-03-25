@@ -72,8 +72,6 @@ if (isset($_POST) && !empty($_POST)) {
                 case 'enigmeok':
                     $avertissement = "Votre énigme est enregistrée. Merci de votre aide !";
                     break;
-                
-                
             }
 
             echo "<div class='alert alert-warning'>
@@ -97,15 +95,15 @@ if (isset($_POST) && !empty($_POST)) {
         </section>
 
 
-        <?php
-        if (empty($_SESSION['login'])) {
-            ?>
+<?php
+if (empty($_SESSION['login'])) {
+    ?>
             <section>
-                <?php
-                if (!empty($message)) {
-                    echo "<p class = 'alert alert-warning'>$message</p>";
-                }
-                ?>
+            <?php
+            if (!empty($message)) {
+                echo "<p class = 'alert alert-warning'>$message</p>";
+            }
+            ?>
                 <!-- Formulaire se connecter-->
                 <form method="post">
                     <div class="form-group">
@@ -127,11 +125,11 @@ if (isset($_POST) && !empty($_POST)) {
                 <a href="enregistrement.php"> <button type="button" class="btn btn-default">Inscription</button> </a>
             </section>
 
-            <?php
-        }
+    <?php
+}
 
-        if (!empty($_SESSION['login'])) {
-            ?>
+if (!empty($_SESSION['login'])) {
+    ?>
             <section>
                 <h3>Se désinscrire :</h3>
                 <p>
@@ -139,37 +137,9 @@ if (isset($_POST) && !empty($_POST)) {
                     Vous pouvez à tout moment vous désinscrire en cliquant sur <a class="MP_oubli" href="traitement.php?mode=desinscription">ce lien</a>.
                 </p>
             </section>
-        <?php } ?>
+<?php } ?>
 
         <?php include("include/footer.php") ?>
-
-
-        <a href="enregistrement.php">s'enregistrer</a>
-        <br>
-
-        <a href="enigme.php">accéder à l'énigme</a>
-        <br>
-
-        <a href="creation_enigme.php">créer une énigme</a>
-        <br>
-
-        <a href="creation_indice.php">créer un indice</a>
-        <br>
-
-        <a href="aide.php">aide</a>
-        <br>
-
-        <a href="regles.php"> règles</a>
-
-        <br>
-        <a href="messagerie.php">accéder à ma messagerie</a>
-
-        <br>
-        <a href="afficher_message.php">afficher un message</a>
-
-        <br>
-        <a href="creer_message.php">créer un message</a> 
-        </br>
     </body>
 
 </html>

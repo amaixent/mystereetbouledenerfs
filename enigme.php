@@ -28,7 +28,8 @@ $nb_point_user = $info_user["point_user"];
  */
 
 if(isset($reponse) && !empty($reponse)){
-    if($reponse == $info_enigme["reponse"]){$select = select_by_id("user", "id_user", $_SESSION['id_user']);
+    if($reponse == $info_enigme["reponse"]){
+        $select = select_by_id("user", "id_user", $_SESSION['id_user']);
         $nb_point_user += $info_enigme["point"];
         $num = $info_enigme["num_enigme"];
         $num++;
@@ -37,8 +38,8 @@ if(isset($reponse) && !empty($reponse)){
         //var_dump($enigme);
         $id = $enigme[0]["id_enigme"];
         extract($info_user);
-        modifier_user($_SESSION["id_user"], $nom_user, $mdp_user, $mail, $statut, $num, $nb_point_user);
-        
+        modifier_user($_SESSION["id_user"], $nom_user, $mdp_user, $mail, $statut, $num, $nb_point_user,0);
+    
         header("location:enigme.php?code=$id");
     }
 }
@@ -93,7 +94,7 @@ if(isset($reponse) && !empty($reponse)){
             <p>Cette énigme rapporte <?php echo $info_enigme["point"] ?> points.</p>
         </div>
         <div class="btn-aide">
-            <a href="aide.php"><button type="submit" type="button" class="btn btn-default indice">Besoin d'aide ?</button></a>
+            <?php echo "<a href='aide.php?code=$code'><button type='submit' type='button' class='btn btn-default indice'>Besoin d'aide ?</button></a>"; ?>
         </div>
 
         <?php include("include/footer.php") ?>
