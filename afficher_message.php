@@ -10,8 +10,6 @@ if (isset($_GET) && !empty($_GET)) {
 }
 $info_message = select_by_id("message", "id_message", $id);
 
-/*echo '$info_message = ';
-var_dump($info_message);*/
 
 /*
  * SECURITE : vérifier que le message concerne l'utilisteur (message reçu ou envoyé)

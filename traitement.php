@@ -2,7 +2,6 @@
 //tableaux de fonctions
 session_start();
 require ('main.inc.php');
-//require ($cfg['ROOT_DIR'] . '/lib/parameters.inc.php');
 // extraire les informations en fonction de la méthode d'appel
 if (isset($_GET) && !empty($_GET)) {
     extract($_GET);
@@ -34,17 +33,13 @@ switch ($mode) {
     // accéder à l'énigme en cours
     case 'acceder_enigme':
         $select = select_by_id("user", "id_user", $_SESSION['id_user']);
-        //echo "<br> résultat select : ";
-        //var_dump($select);
         $num = $select["idEnigme"];
-        //echo '<br> $num = ', $select["idEnigme"];
         $enigme = select_enigme_by_num($num);
-        //echo '<br>$enigme : select by num';
-        //var_dump($enigme);
         $id = $enigme[0]["id_enigme"];
         header("location:enigme.php?code=$id");
         exit();
         break;
+    // proposer une énigme
     case 'crea_enigme' :
 
         //Pour éviter d'écraser les doublons si 2 images chargées ont le même nom    
@@ -54,7 +49,6 @@ switch ($mode) {
         $fichier = pathinfo($_FILES['image']['name'], PATHINFO_FILENAME);
         $i = 1;
         $completename = $dir2save . '/' . $_FILES["image"]["name"];
-
         $image = $_FILES["image"]["name"];
 
         while (file_exists($completename)) {
@@ -62,13 +56,16 @@ switch ($mode) {
             $image = $fichier . '(' . $i . ').' . $ext;
             $i++;
         }
-        echo("<br> completname après le while =  $completename <br>");
 
         $destination = $completename;
-        echo(" destination =  $destination");
 
         //fonction d'upload pour l'image
-        $upload1 = upload('image', $destination, 1073741824, array('png', 'gif', 'jpg', 'jpeg'));
+        $upload1 = upload('image', $destination, 1073741824, array('png', 'gif', 'jpg', 'jpeg', 'JPG'));
+        if ($upload1 == false ){
+            header("Location:index.php?alert=uploadnull");
+            exit();
+            break;
+        }
 
         //nom de l'auteur
         if ($optionsRadios == "option1") {
@@ -79,6 +76,7 @@ switch ($mode) {
         $enigme = NULL;
         $enigme = select_enigme_titre_enonce($titre, $enonce);
         $id_enigme = $enigme[0]['id_enigme'];
+
         if ($nb_indice == 0) {
             header("Location:index.php?alert=enigmeok");
         } else {
@@ -89,7 +87,7 @@ switch ($mode) {
         exit();
         break;
 
-
+    //se désinscrire
     case 'desinscription' :
         effacer_user($_SESSION ['id_user']);
         $_SESSION['login'] = false;
@@ -98,6 +96,7 @@ switch ($mode) {
         exit();
         break;
 
+    //créer le nombre d'indices choisi à la saisie de l'énigme.
     case 'crea_indice' :
         echo 'id enigme : ', $id_enigme;
         for ($i = 0; $i < $nb_indice; $i++) {
@@ -108,8 +107,8 @@ switch ($mode) {
         exit();
         break;
 
+    //Envoyer un message
     case 'envoi_message':
-        // $objet $destinataire $message
         $date = date("Y-m-d H:i:s");
         $lu = 0;
         $image = NULL;

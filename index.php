@@ -72,6 +72,9 @@ if (isset($_POST) && !empty($_POST)) {
                 case 'enigmeok':
                     $avertissement = "Votre énigme est enregistrée. Merci de votre aide !";
                     break;
+                case 'uploadnull':
+                    $avertissement = "Image incorrecte. Merci de réessayer.";
+                    break;
             }
 
             echo "<div class='alert alert-warning'>

@@ -18,8 +18,7 @@ if (empty($_SESSION['login'])) {
 $messages = select_all("message", "idUser", $_SESSION["id_user"]);
 $messages_envoyes = select_all("message", "expediteur", $_SESSION["pseudo"]);
 
-/* echo '$messages : ';
-  var_dump($messages_envoyes); */
+
 
 /* Résultat de la forme    $message[0] -> tout le message 0
  *                          $message[1] -> tout le message 1
