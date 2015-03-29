@@ -16,9 +16,16 @@ switch ($mode) {
     //enregistrer un utilisateur
     case 'new_user':
         if (empty($_SESSION['login'])) {
-            enregistrer_user($nom_user, $mdp_user, $mail);
+            $test = authentifier_user($nom_user);
+            if ($test == NULL ){
+                enregistrer_user($nom_user, $mdp_user, $mail);
+                header("location: index.php?alert=connectezvous");
+            }
+            else{
+                header("location: index.php?alert=identifiantexiste");
+            }
         }
-        header("location: index.php?alert=connectezvous");
+        
         exit();
         break;
 
@@ -113,9 +120,14 @@ switch ($mode) {
         $lu = 0;
         $image = NULL;
         $info_dest = authentifier_user($destinataire);
-        $id_dest = $info_dest[0]["id_user"];
-        enregistrer_message($objet, $destinataire, $_SESSION["pseudo"], $texte, $date, $lu, $image, $id_dest);
-        header("location:messagerie.php");
+        if($info_dest == NULL){
+            header("location:index.php?alert=usererror");
+        }
+        else{
+            $id_dest = $info_dest[0]["id_user"];
+            enregistrer_message($objet, $destinataire, $_SESSION["pseudo"], $texte, $date, $lu, $image, $id_dest);
+            header("location:messagerie.php");
+        }
         break;
 
     case 'acheter_indice':

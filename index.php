@@ -8,7 +8,6 @@ if (isset($_GET) && !empty($_GET)) {
 }
 if (isset($_POST) && !empty($_POST)) {
     //lecture des paramètres
-    //var_dump($_POST['nom_user']);
     $auth = authentifier_user($_POST['nom_user']);
     if (!empty($auth)) {
         //traitement
@@ -74,6 +73,15 @@ if (isset($_POST) && !empty($_POST)) {
                     break;
                 case 'uploadnull':
                     $avertissement = "Image incorrecte. Merci de réessayer.";
+                    break;
+                case 'derniereenigme':
+                    $avertissement = "Vous avez répondu à toutes les enigmes disponibles. N'hésitez pas à en proposer pour faire avancer le jeu.";
+                    break;
+                case 'identifiantexiste':
+                    $avertissement = "Cet identifiant existe déjà. Merci de recommencer votre inscription.";
+                    break;
+                case 'usererror' :
+                    $avertissement = "La personne à qui vous essayez d'envoyer un message n'existe pas.";
                     break;
             }
 

@@ -11,12 +11,15 @@ if (isset($_GET)  && !empty($_GET)) {
     extract($_GET);
 }
 
-//echo "code : ", $code;
+
 
 /*
  * La variable $code est passée par l'adresse - c'est en fait l'id de l'énigme en cours
  */
 $info_enigme = select_by_id("enigme", "id_enigme", $code);
+if($info_enigme== NULL){
+    header("location: index.php?alert=derniereenigme");
+}
 $info_auteur = select_by_id("user", "id_user", $info_enigme["auteur_id"]);
 $nom_auteur = $info_auteur["nom_user"];
 $info_user = select_by_id("user", "id_user", $_SESSION["id_user"]);

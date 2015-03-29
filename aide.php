@@ -88,27 +88,6 @@ INDICE;
             }
             ?>
 
-
-
-            <!--            <div class="aide">
-                            <p class="indice"><em>1er indice :</em> -2 points</p>
-                            <div class="afficher-indice2">
-                                Comme le monsieur a acheté l'indice, il le voit ici, bla bla bla!
-                            </div>
-                        </div>
-            
-                        <div class="aide"> 
-                            <p class="indice"><em>2ème indice :</em> -2 points</p>
-                            <a href="traitement.php"><button type="submit" type="button" class="btn btn-info indice">Acheter</button></a>
-                        </div>
-            
-                        <div class="aide"> 
-                            <p class="indice"><em>3ème indice : </em>-4 points</p>
-                            <a href="traitement.php"><button type="submit" type="button" class="btn btn-info indice">Acheter</button></a>
-                        </div>
-            
-                        <a href="creer_message.php?mode=aide"><button type="submit" type="button" class="btn btn-info indice">Demander de l'aide</button></a>-->
-
         </section>
 
         <?php include("include/footer.php") ?>

@@ -4,7 +4,12 @@ require ('main.inc.php');
 if (empty($_SESSION['login'])) {
     header("location: index.php?alert=deconnecte");
 }
-
+if (isset($_POST) && !empty($_POST)) {
+    extract($_POST);
+}
+if (isset($_GET) && !empty($_GET)) {
+    extract($_GET);
+}
 
 /*
  *
@@ -44,7 +49,10 @@ $messages_envoyes = select_all("message", "expediteur", $_SESSION["pseudo"]);
         <link href="css/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     </head>
     <body> 
-        <?php include("include/menu.php") ?>
+        <?php
+        include("include/menu.php") 
+        ?>
+
         <section class="bienvenue">
             <h1>Bienvenue sur votre messagerie.</h1>
         </section>
@@ -64,13 +72,15 @@ $messages_envoyes = select_all("message", "expediteur", $_SESSION["pseudo"]);
                         $id_message = $message['id_message'];
                         $expediteur = $message['expediteur'];
                         $objet = $message['objet'];
+                        $lu=  $message["lu"];
+
                         echo <<<MESSAGE
                 <div class="row">
                     <a href="afficher_message.php?id=$id_message&mode=recu" >
-                        <div class="col-md-5 message_non_lu">
+                        <div class="col-md-5 message_lu">
                             $expediteur
                         </div>
-                        <div class="col-md-4 message_non_lu">
+                        <div class="col-md-4 message_lu">
                             $objet
                         </div>
                     </a>
@@ -102,10 +112,10 @@ MESSAGE;
                         echo <<<MESSAGE
                 <div class="row">
                     <a href="afficher_message.php?id=$id_message&mode=envoye" >
-                        <div class="col-md-5 message_non_lu">
+                        <div class="col-md-5 message_lu">
                             $destinataire
                         </div>
-                        <div class="col-md-4 message_non_lu">
+                        <div class="col-md-4 message_lu">
                             $objet
                         </div>
                     </a>

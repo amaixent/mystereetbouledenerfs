@@ -2,14 +2,6 @@
 session_start();
 require ('main.inc.php');
 
-/*
- * /!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
- * /!\/!\vérifier qu'il n'y ait pas 2 pseudos pareils !  /!\/!\/!\/!\/!\
- * /!\/!\-> que le pseudo choisi n'existe pas déjà  TRES IMPORTANT/!\/!\
- * /!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
- */
-
-
 if (!empty($_SESSION['login'])) {
     header("location: index.php?alert=enregistreruser");
 }
