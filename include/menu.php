@@ -1,4 +1,4 @@
-<header id="navbar" class="navbar-collapse collapse bar_sup">
+    <header id="navbar" class="navbar-collapse collapse bar_sup">
     <?php
     if (!empty($_SESSION)) {
         if ($_SESSION['login'] == true) {
@@ -15,8 +15,8 @@
     }
     ?>
     <ul class="nav navbar-nav links">
-        <li> <a href="index.php">Accueil</a></li>
-        <li> <a href="regles.php">Les règles</a></li>
+        <li> <a href="index.php" class="nav_color">Accueil</a></li>
+        <li> <a href="regles.php" class="nav_color">Les règles</a></li>
 
         <?php
         if (!empty($_SESSION)) {
@@ -31,10 +31,10 @@ NIMPORTEQUOI;
                  */
                 
                 echo <<<HEADER
-        <li> <a href="enigme.php?code=$id">Énigme en cours</a></li>
+        <li> <a href="enigme.php?code=$id" class="nav_color">Énigme en cours</a></li>
         <li> <a href="messagerie.php" class="nv_mess">Ma messagerie</a></li>
-        <li> <a href="creation_enigme.php">Proposer une énigme</a></li>
-        <li> <a href="traitement.php?mode=logout">Déconnexion</a></li>
+        <li> <a href="creation_enigme.php" class="nav_color">Proposer une énigme</a></li>
+        <li> <a href="traitement.php?mode=logout" class="nav_color">Déconnexion</a></li>
 HEADER;
             }
         }

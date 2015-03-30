@@ -58,7 +58,11 @@ section p {
     float:right;
 }
 .nv_mess{
-    color: #B32245;
+    color: #CCCCCC;
+}
+.nav_color{
+    color: #00B0D9;
+
 }
 
 .MP_oubli{
