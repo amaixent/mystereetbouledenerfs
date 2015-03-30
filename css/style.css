@@ -3,6 +3,7 @@
 body {
     background-image: url("../img/bg1.png");
 
+
 }
 
 section {
@@ -65,7 +66,7 @@ section p {
 }
 
 .conditions{
-    color: #4C4F4F;
+    color: #CCCCCC;
     padding:2% 5% 2% 5%;
     background-color: rgba(0, 0, 0, 0.2);
     margin:10% 0% 0% 0%;
