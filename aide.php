@@ -86,8 +86,10 @@ INDICE;
             if (!empty($nb_point_user) && $nb_point_user < 2 || $num == $info_user["indice_achete"] || empty($indices)) {
                 echo "<a href='creer_message.php?mode=aide'><button type='submit' type='button' class='btn btn-info indice'>Demander de l'aide</button></a>";
             }
+            
+            $id_enigme = $indice["idEnigme"];
+            echo "<br><a href='enigme.php?code=$id_enigme'><button type='submit' type='button' class='btn btn_enregistrement btn-info indice'>Retour</button></a>";
             ?>
-
         </section>
 
         <?php include("include/footer.php") ?>
