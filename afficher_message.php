@@ -11,10 +11,6 @@ if (isset($_GET) && !empty($_GET)) {
 $info_message = select_by_id("message", "id_message", $id);
 
 
-/*
- * SECURITE : vérifier que le message concerne l'utilisteur (message reçu ou envoyé)
- */
-
 if($mode == "recu" && ($info_message["idUser"] !== $_SESSION["id_user"])){
     header("location:index.php?alert=interditmessage");
     exit();
@@ -23,9 +19,6 @@ if($mode == "envoye" && ($info_message["expediteur"] !== $_SESSION["pseudo"])){
     header("location:index.php?alert=interditmessage");
     exit();
 }
-/*
- * DATE : REFORMATER TOUT CA
- */
 extract($info_message);
 ?>
 <!DOCTYPE html>

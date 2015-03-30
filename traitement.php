@@ -131,13 +131,6 @@ switch ($mode) {
         break;
 
     case 'acheter_indice':
-        //$id_indice
-        //$_SESSION["id_user"]
-        /*
-         * A faire : vérifier si le joueur a assez de points
-         * Si oui, enlever le prix de l'indice au total de points, update colonne indice_achete dans user puis rediriger pour afficher
-         * si non, rediriger avec message d'erreur et afficher bouton "demander de l'aide"
-         */
         $info_user = select_by_id("user", "id_user", $_SESSION["id_user"]);
         $info_indice = select_by_id("indice", "id_indice", $id_indice);
         extract($info_user);

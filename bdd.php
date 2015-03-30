@@ -26,6 +26,7 @@ class Database {
 
     public function get_by_id($_table, $_idparam, $_id) {
         $stmt = $this->prepare_execute('SELECT * FROM ' . $_table . ' WHERE ' . $_idparam . ' = :id LIMIT 1;', [':id' => $_id]);
+
         return $stmt[0];
     }
 

@@ -93,7 +93,7 @@ if (isset($_POST) && !empty($_POST)) {
 
         <nav>	
             <div class="titre">
-                <h1>Mystère et boule de nerf...</h1> 
+                <h1>Mystère et boule de nerfs...</h1> 
             </div>
         </nav>
 

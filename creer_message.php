@@ -12,13 +12,6 @@ if (isset($_POST) && !empty($_POST)) {
     extract($_POST);
 }
 
-
-
-
-/*
- * GERER L'ENREGISTREMENT DE LA DATE / DE L'HEURE 
- * 
- */
 ?>
 <!DOCTYPE html>
 <html>
