@@ -34,6 +34,7 @@ NIMPORTEQUOI;
         <li> <a href="enigme.php?code=$id" class="nav_color">Énigme en cours</a></li>
         <li> <a href="messagerie.php" class="nv_mess">Ma messagerie</a></li>
         <li> <a href="creation_enigme.php" class="nav_color">Proposer une énigme</a></li>
+        <li> <a href="classement.php" class="nav_color">Classement</a></li>
         <li> <a href="traitement.php?mode=logout" class="nav_color">Déconnexion</a></li>
 HEADER;
             }
