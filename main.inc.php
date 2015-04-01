@@ -239,5 +239,16 @@ function effacer_message($id_message) {
     return $req;
 }
 
+/* * ****************************
+ * Ce qui concerne le classement
+ * **************************** */
+
+
+function select_classement() {
+    $req = Database::get()->prepare_execute("SELECT * FROM `user` ORDER BY `idEnigme` DESC, `point_user` DESC LIMIT 10",
+    array());
+    return $req;
+}
+
 //turtoise git
 ?>﻿

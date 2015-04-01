@@ -262,3 +262,9 @@ section p {
     display:inline-block;
     color: #00B0D9;	
 }
+
+/*CSS page classement.php*/
+
+.classement{
+    width:70%;
+}
