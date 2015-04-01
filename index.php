@@ -116,7 +116,7 @@ if (empty($_SESSION['login'])) {
             }
             ?>
                 <!-- Formulaire se connecter-->
-                <form method="post">
+                <form method="post" action="index.php">
                     <div class="form-group">
                         <label for="nom_user">Identifiant :</label>
                         <input type="text" class="form-control" id="nom_user" name="nom_user" required/>

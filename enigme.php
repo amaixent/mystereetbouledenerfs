@@ -43,6 +43,11 @@ if (isset($reponse) && !empty($reponse)) {
         $num = $info_enigme["num_enigme"];
         $num++;
         $enigme = select_enigme_by_num($num);
+        
+        /*
+        * vérifier si l'énigme suivante existe
+        */
+        
         $id = $enigme[0]["id_enigme"];
         extract($info_user);
         modifier_user($_SESSION["id_user"], $nom_user, $mdp_user, $mail, $statut, $num, $nb_point_user, 0);

@@ -48,7 +48,7 @@ function select_by_id($table, $idparam, $id) {
     return $req;
 }
 
-// pas forcément utile en fait mais on verra à la fin
+
 function select_by_id_notall($params, $table, $idparam, $id) {
     /* exemple : select_by_id_notall('point_user,idEnigme','user', 'id_user', 2) */
     $req = Database::get()->get_by_id_notall($params,$table, $idparam, $id);
