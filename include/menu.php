@@ -9,7 +9,10 @@
             //Récupération de l'id_enigme en cours de résolution par le joueur
             $num = $select["idEnigme"];
             $enigme = select_enigme_by_num($num);
-            $id = $enigme[0]["id_enigme"];
+            if(!empty($enigme[0]["id_enigme"])){
+                $id = $enigme[0]["id_enigme"];
+            }
+            
             echo "<p>Bonjour $pseudo, vous avez $nbpoint points.</p>";
         }
     }
@@ -29,9 +32,12 @@ NIMPORTEQUOI;
                  * surtout coller la fin du echo au bord et ne rien laisser sur la même ligne (même pas d'espace ! sinon ça marche pas
                  * Dans ce type d'echo, les variables sont interprétées, sauf si tu veux afficher un truc du type $tab['id_user'] il faut écrire : {$tab['id_user']}
                  */
-                
+                if(isset($id) && !empty($id)){
+                    echo "<li> <a href='enigme.php?code=$id' class='nav_color'>Énigme en cours</a></li>";
+                }
                 echo <<<HEADER
-        <li> <a href="enigme.php?code=$id" class="nav_color">Énigme en cours</a></li>
+                
+
         <li> <a href="messagerie.php" class="nv_mess">Ma messagerie</a></li>
         <li> <a href="creation_enigme.php" class="nav_color">Proposer une énigme</a></li>
         <li> <a href="classement.php" class="nav_color">Classement</a></li>
