@@ -45,7 +45,7 @@ class Database {
     }
 
     public static function get() {
-        return new Database('mysql', 'localhost', 'site_enigme', 'root', '');
+        return new Database('mysql', 'localhost', 'site_enigme', 'root', 'root');
     }
 
 }
