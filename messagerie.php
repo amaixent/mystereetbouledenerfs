@@ -68,19 +68,23 @@ $messages_envoyes = select_all("message", "expediteur", $_SESSION["pseudo"]);
 
                 <?php
                 if (!empty($messages)) {
-                    foreach ($messages as $message) {
+                    foreach (array_reverse($messages) as $message) {
                         $id_message = $message['id_message'];
                         $expediteur = $message['expediteur'];
                         $objet = $message['objet'];
-                        $lu=  $message["lu"];
+                        $lu = $message["lu"];
+                        $classeLu = ' message_non_lu';
+                        if($lu == 1){
+                            $classeLu = ' message_lu';
+                        }
 
                         echo <<<MESSAGE
                 <div class="row">
                     <a href="afficher_message.php?id=$id_message&mode=recu" >
-                        <div class="col-md-5 message_lu">
+                        <div class="col-md-5$classeLu">
                             $expediteur
                         </div>
-                        <div class="col-md-4 message_lu">
+                        <div class="col-md-4$classeLu">
                             $objet
                         </div>
                     </a>
@@ -105,10 +109,11 @@ MESSAGE;
 
                 <?php
                 if (!empty($messages_envoyes)) {
-                    foreach ($messages_envoyes as $message) {
+                    foreach (array_reverse($messages_envoyes) as $message) {
                         $id_message = $message['id_message'];
                         $destinataire = $message['destinataire'];
                         $objet = $message['objet'];
+                        $lu = $message['lu'];
                         echo <<<MESSAGE
                 <div class="row">
                     <a href="afficher_message.php?id=$id_message&mode=envoye" >

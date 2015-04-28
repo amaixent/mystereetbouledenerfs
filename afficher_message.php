@@ -20,6 +20,10 @@ if($mode == "envoye" && ($info_message["expediteur"] !== $_SESSION["pseudo"])){
     exit();
 }
 extract($info_message);
+if(isset($lu) && $lu == 0){
+    $lu = 1;
+    modifier_message($id_message, $objet, $destinataire, $expediteur, $texte, $date, $lu, $image, $idUser);
+}
 ?>
 <!DOCTYPE html>
 <html>

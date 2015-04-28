@@ -214,6 +214,22 @@ function enregistrer_message($objet, $destinataire, $expediteur, $texte, $date, 
     return $req;
 }
 
+function modifier_message($id_message, $objet, $destinataire, $expediteur, $texte, $date, $lu, $image, $idUser) {
+    $req = Database::get()->prepare_execute_add_up_del("UPDATE message SET objet = :objet, destinataire = :destinataire, expediteur = :expediteur, texte = :texte, date = :date, lu = :lu, image = :image, idUser = :idUser WHERE id_message = :id_message",
+    array(
+        'objet' => $objet,
+        'destinataire' => $destinataire,
+        'expediteur' => $expediteur,
+        'texte' => $texte,
+        'date' => $date,
+        'lu' => $lu,
+        'image' => $image,
+        'idUser' => $idUser,
+        'id_message' => $id_message
+    ));
+    return $req;
+}
+
 function select_message_by_idUser($select, $idUser) {
     $req = Database::get()->prepare_execute("SELECT :select FROM message WHERE idUser = :idUser",
     array(
