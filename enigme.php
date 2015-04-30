@@ -50,7 +50,7 @@ if (isset($reponse) && !empty($reponse)) {
         
         $id = $enigme[0]["id_enigme"];
         extract($info_user);
-        modifier_user($_SESSION["id_user"], $nom_user, $mdp_user, $mail, $statut, $num, $nb_point_user, 0);
+        modifier_user($_SESSION["id_user"], $nom_user, $mdp_user, $mail, $statut, $num, $nb_point_user, 0, $cle, $actif);
 
         header("location:enigme.php?code=$id");
     }

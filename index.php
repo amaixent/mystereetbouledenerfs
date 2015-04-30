@@ -10,15 +10,19 @@ if (isset($_POST) && !empty($_POST)) {
     //lecture des paramètres
     $auth = authentifier_user($_POST['nom_user']);
     if (!empty($auth)) {
-        //traitement
-        if (md5($_POST['mdp_user']) == $auth[0]["mdp_user"]) {
-            $_SESSION['login'] = true;
-            $_SESSION['pseudo'] = $_POST['nom_user'];
-            $_SESSION['id_user'] = $auth[0]["id_user"];
-            header("location:traitement.php?mode=acceder_enigme");
-            exit();
+        if ($auth[0]["actif"] == 1) {
+            //traitement
+            if (md5($_POST['mdp_user']) == $auth[0]["mdp_user"]) {
+                $_SESSION['login'] = true;
+                $_SESSION['pseudo'] = $_POST['nom_user'];
+                $_SESSION['id_user'] = $auth[0]["id_user"];
+                header("location:traitement.php?mode=acceder_enigme");
+                exit();
+            } else {
+                $message = "INCORRECT, veuillez vous ré-identifier ";
+            }
         } else {
-            $message = "INCORRECT, veuillez vous ré-identifier ";
+            $message = "Vous n'avez pas activé votre compte, allez voir vos mails !";
         }
     } else {
         $message = "INCORRECT, veuillez vous ré-identifier ";
@@ -27,53 +31,64 @@ if (isset($_POST) && !empty($_POST)) {
 ?>
 <!DOCTYPE html>
 <html>
-    <?php include("include/head.php");?>
+<?php include("include/head.php"); ?>
     <body>
 
-        <?php
-        include("include/menu.php");
-        if (isset($alert)) {
-            switch ($alert) {
-                case 'connectezvous':
-                    $avertissement = "Vous êtes enregistré, maintenant connectez vous !";
-                    break;
-                case 'interdit':
-                    $avertissement = "Attention ! L'accès à cette page est interdit !";
-                    break;
-                case 'deconnecte':
-                    $avertissement = "Accès interdit, veuillez vous connecter pour voir la page souhaitée.";
-                    break;
-                case 'enregistreruser':
-                    $avertissement = "Accès interdit, vous avez déjà un compte...";
-                    break;
-                case 'interditmessage':
-                    $avertissement = "Accès interdit, Le message auquel vous tentez d'accéder ne vous concerne pas.";
-                    break;
-                case 'desinscrit':
-                    $avertissement = "Vous êtes maintenant désinscrit.";
-                    break;
-                case 'enigmeok':
-                    $avertissement = "Votre énigme est enregistrée. Merci de votre aide !";
-                    break;
-                case 'uploadnull':
-                    $avertissement = "Image incorrecte. Merci de réessayer.";
-                    break;
-                case 'derniereenigme':
-                    $avertissement = "Vous avez répondu à toutes les enigmes disponibles. N'hésitez pas à en proposer pour faire avancer le jeu.";
-                    break;
-                case 'identifiantexiste':
-                    $avertissement = "Cet identifiant existe déjà. Merci de recommencer votre inscription.";
-                    break;
-                case 'usererror' :
-                    $avertissement = "La personne à qui vous essayez d'envoyer un message n'existe pas.";
-                    break;
-            }
+<?php
+include("include/menu.php");
+//Messages d'alerte, d'information, etc
+if (isset($alert)) {
+    switch ($alert) {
+        case 'connectezvous':
+            $avertissement = "Votre compte est activé, vous pouvez maintenant vous connecter !";
+            break;
+        case 'interdit':
+            $avertissement = "Attention ! L'accès à cette page est interdit !";
+            break;
+        case 'deconnecte':
+            $avertissement = "Accès interdit, veuillez vous connecter pour voir la page souhaitée.";
+            break;
+        case 'enregistreruser':
+            $avertissement = "Accès interdit, vous avez déjà un compte...";
+            break;
+        case 'interditmessage':
+            $avertissement = "Accès interdit, Le message auquel vous tentez d'accéder ne vous concerne pas.";
+            break;
+        case 'desinscrit':
+            $avertissement = "Vous êtes maintenant désinscrit.";
+            break;
+        case 'enigmeok':
+            $avertissement = "Votre énigme est enregistrée. Merci de votre aide !";
+            break;
+        case 'uploadnull':
+            $avertissement = "Image incorrecte. Merci de réessayer.";
+            break;
+        case 'derniereenigme':
+            $avertissement = "Vous avez répondu à toutes les enigmes disponibles. N'hésitez pas à en proposer pour faire avancer le jeu.";
+            break;
+        case 'identifiantexiste':
+            $avertissement = "Cet identifiant existe déjà. Merci de recommencer votre inscription.";
+            break;
+        case 'usererror' :
+            $avertissement = "La personne à qui vous essayez d'envoyer un message n'existe pas.";
+            break;
+        case 'dejaactif' :
+            $avertissement = "Vous avez déjà activé votre compte, vous pouvez vous connecter normalement.";
+            break;
+        case 'pbactiv' :
+            $avertissement = "Erreur, votre compte ne peut pas être activé";
+            break;
+        case 'activmail' :
+            $avertissement = "Allez voir vos mails pour activer votre compte dès maintenant !";
+            break;
+        
+    }
 
-            echo "<div class='alert alert-warning'>
+    echo "<div class='alert alert-warning'>
                     <strong>$avertissement</strong> 
                 </div>";
-        }
-        ?>
+}
+?>
 
         <nav>	
             <div class="titre">

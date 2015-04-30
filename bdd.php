@@ -20,18 +20,22 @@ class Database {
     }
 
     public function prepare_execute_add_up_del($_req, $_param = array()) {
+//        echo "<br>------------bdd-----<br>_req<br> $_req <br>--------bdd---------<br> param : <br>";
+//        var_dump($_param);
         $stmt = $this->base->prepare($_req);
+//        echo "<br>---------bdd--------<br> stmt <br>";
+//        var_dump($stmt);
         $stmt->execute($_param);
     }
 
     public function get_by_id($_table, $_idparam, $_id) {
-        $stmt = $this->prepare_execute('SELECT * FROM ' . $_table . ' WHERE ' . $_idparam . ' = :id LIMIT 1;', [':id' => $_id]);
+        $stmt = $this->prepare_execute('SELECT * FROM ' . $_table . ' WHERE ' . $_idparam . ' = :id LIMIT 1;', array(':id' => $_id));
 
         return $stmt[0];
     }
 
     public function get_by_id_notall($_params, $_table, $_idparam, $_id) {
-        $stmt = $this->prepare_execute('SELECT ' . $_params . ' FROM ' . $_table . ' WHERE ' . $_idparam . ' = :id LIMIT 1;', [':id' => $_id]);
+        $stmt = $this->prepare_execute('SELECT ' . $_params . ' FROM ' . $_table . ' WHERE ' . $_idparam . ' = :id LIMIT 1;', array(':id' => $_id));
         return $stmt[0];
     }
 
@@ -40,7 +44,7 @@ class Database {
      */
 
     public function get_all($_table, $_param, $_val) {
-        $stmt = $this->prepare_execute('SELECT * FROM ' . $_table . ' WHERE ' . $_param . ' = :val', [':val' => $_val]);
+        $stmt = $this->prepare_execute('SELECT * FROM ' . $_table . ' WHERE ' . $_param . ' = :val', array(':val' => $_val));
         return $stmt;
     }
 

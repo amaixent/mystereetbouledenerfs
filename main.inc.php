@@ -7,20 +7,21 @@ $nom_bdd = 'site_enigme';
  * Ce qui concerne les utilisateurs :
  */
 
-function enregistrer_user($nom_user, $mdp_user, $mail) {
+function enregistrer_user($nom_user, $mdp_user, $mail, $cle) {
 
-    $req = Database::get()->prepare_execute_add_up_del("INSERT INTO user (id_user, nom_user, mdp_user, mail, statut, idEnigme, point_user, indice_achete) VALUES (NULL, :nom_user, :mdp_user,  :mail, 'joueur', '0', '10', '0')", 
+    $req = Database::get()->prepare_execute_add_up_del("INSERT INTO user (id_user, nom_user, mdp_user, mail, statut, idEnigme, point_user, indice_achete, cle, actif) VALUES (NULL, :nom_user, :mdp_user,  :mail, 'joueur', '0', '10', '0', :cle, '0')", 
     array(
         'nom_user' => $nom_user,
         'mdp_user' => md5($mdp_user),
-        'mail' => $mail
+        'mail' => $mail,
+        'cle' => $cle
     ));
     return $req;
 }
 
-function modifier_user($id_user, $nom_user, $mdp_user, $mail, $statut, $idEnigme, $point_user, $indice_achete) {
-
-    $req = Database::get()->prepare_execute_add_up_del("UPDATE user SET nom_user = :nom_user, mdp_user = :mdp_user, mail = :mail, statut = :statut, idEnigme = :idEnigme, point_user = :point_user, indice_achete = :indice_achete WHERE id_user = :id_user", 
+function modifier_user($id_user, $nom_user, $mdp_user, $mail, $statut, $idEnigme, $point_user, $indice_achete, $cle, $actif) {
+//    echo "<br>------------main-----<br>modifier user :$id_user, $nom_user, $mdp_user, $mail, $statut, $idEnigme, $point_user, $indice_achete, $cle, $actif";
+    $req = Database::get()->prepare_execute_add_up_del("UPDATE user SET nom_user = :nom_user, mdp_user = :mdp_user, mail = :mail, statut = :statut, idEnigme = :idEnigme, point_user = :point_user, indice_achete = :indice_achete, cle = :cle, actif = :actif WHERE id_user = :id_user", 
     array(
         'nom_user' => $nom_user,
         'mdp_user' => $mdp_user,
@@ -29,15 +30,19 @@ function modifier_user($id_user, $nom_user, $mdp_user, $mail, $statut, $idEnigme
         'idEnigme' => $idEnigme,
         'point_user' => $point_user,
         'id_user' => $id_user,
-        'indice_achete' => $indice_achete
+        'indice_achete' => $indice_achete,
+        'cle' => $cle,
+        'actif' => $actif
     ));
+//    echo "<br><br> req <br>--------main----req-----<br><br>";
+//    var_dump($req);
     return $req;
 }
 
 function authentifier_user($nom_user) {
 
     //On prépare la requête car une variable est présente dedans, cela pour éviter les injections
-    $req = Database::get()->prepare_execute("SELECT id_user, mdp_user FROM user WHERE nom_user = ?", array($nom_user));
+    $req = Database::get()->prepare_execute("SELECT id_user, mdp_user, cle, actif FROM user WHERE nom_user = ?", array($nom_user));
     // le ? est remplacé par la variable $nom_user
     return $req;
 }

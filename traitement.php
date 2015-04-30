@@ -18,8 +18,34 @@ switch ($mode) {
         if (empty($_SESSION['login'])) {
             $test = authentifier_user($nom_user);
             if ($test == NULL ){
-                enregistrer_user($nom_user, $mdp_user, $mail);
-                header("location: index.php?alert=connectezvous");
+                
+                
+                // Génération aléatoire d'une clé
+                $cle = md5(microtime(TRUE)*100000);
+
+                
+                enregistrer_user($nom_user, $mdp_user, $mail, $cle);
+
+                // Préparation du mail contenant le lien d'activation
+                $destinataire = $mail;
+                $sujet = "Activer votre compte" ;
+                $entete = "From: mystereet@bouledenerfs.com" ;
+
+                // Le lien d'activation est composé du login(log) et de la clé(cle)
+                $message = 'Bienvenue sur Mystère et boule de nerfs,
+
+                Pour activer votre compte, veuillez copier/coller dans votre navigateur internet.
+
+                http://pmserv.net/alice/mystereetbouledenerfs/activation.php?log='.urlencode($nom_user).'&cle='.urlencode($cle).'
+
+
+                ---------------
+                Ceci est un mail automatique, Merci de ne pas y répondre.';
+
+
+                mail($destinataire, $sujet, $message, $entete) ; // Envoi du mail
+                
+                header("location: index.php?alert=activmail");
             }
             else{
                 header("location: index.php?alert=identifiantexiste");
@@ -138,7 +164,7 @@ switch ($mode) {
         if($point_user > $info_indice["prix"]){
             $point_user -= $info_indice["prix"];
             $indice_achete ++;
-            modifier_user($id_user, $nom_user, $mdp_user, $mail, $statut, $idEnigme, $point_user, $indice_achete);
+            modifier_user($id_user, $nom_user, $mdp_user, $mail, $statut, $idEnigme, $point_user, $indice_achete, $cle, $actif);
         } else {
             header("location:aide.php?code=$id_enigme&alert=pauvre");
         }
