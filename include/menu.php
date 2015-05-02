@@ -1,4 +1,4 @@
-    <header id="navbar" class="navbar-collapse collapse bar_sup">
+﻿    <header id="navbar" class="navbar-collapse collapse bar_sup">
     <?php
     if (!empty($_SESSION)) {
         if ($_SESSION['login'] == true) {
@@ -42,6 +42,7 @@ NIMPORTEQUOI;
         <li> <a href="creation_enigme.php" class="nav_color">Proposer une énigme</a></li>
         <li> <a href="classement.php" class="nav_color">Classement</a></li>
         <li> <a href="historique.php" class="nav_color">Historique</a></li>
+        <li> <a href="mdp_user.php?mode=new_mdp" class="nav_color">Paramètres</a></li>
         <li> <a href="traitement.php?mode=logout" class="nav_color">Déconnexion</a></li>
 HEADER;
             }

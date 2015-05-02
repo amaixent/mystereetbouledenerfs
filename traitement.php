@@ -29,7 +29,7 @@ switch ($mode) {
                 // Préparation du mail contenant le lien d'activation
                 $destinataire = $mail;
                 $sujet = "Activer votre compte" ;
-                $entete = "From: mystereet@bouledenerfs.com" ;
+                $entete = "From: mystereetbouledenerfs@enigme.com" ;
 
                 // Le lien d'activation est composé du login(log) et de la clé(cle)
                 $message = 'Bienvenue sur Mystère et boule de nerfs,
@@ -170,5 +170,65 @@ switch ($mode) {
         }
         header("location:aide.php?code=$id_enigme");
         break;
+        
+        /*
+        * on clique sur mot de passe oublié
+        * on arrive sur une page où on demande le pseudo + valider
+        * on arrive sur génération de mot de passe ou sur traitement avec un mode particulier
+        * ça envoie un mail avec un mot de passe généré dedans, sans mettre l'identifiant
+        * on pourra rechanger le mot de passe plus tard
+        */
+    case 'mdp_oublie':
+        if (empty($_SESSION['login'])) {
+            $test = authentifier_user($nom_user);
+            if (isset($test)){
+                $info_user = select_by_id("user", "id_user", $test[0]["id_user"]);
+                // Génération d'une chaine aléatoire
+                $newmdp = mdp_aleatoire(8);
+                extract($info_user);
+                $new_encode_mdp = md5($newmdp);
+                modifier_user($id_user, $nom_user, $new_encode_mdp, $mail, $statut, $idEnigme, $point_user, $indice_achete, $cle, $actif);
+
+                // Préparation du mail contenant le lien d'activation
+                $destinataire = $mail;
+                $sujet = "Modifier votre mot de passe" ;
+                $entete = "From: mystereetbouledenerfs@enigme.com" ;
+
+                $message = "Bonjour,
+                
+                Voici votre nouveau mot de passe : ".$newmdp." 
+                Nous vous conseillons vivement de le modifier via l'onglet Paramètres une fois que vous vous serez connecté !
+                
+                A bientôt sur Mystère et boule de nerfs.
+                ---------------
+                Ceci est un mail automatique, Merci de ne pas y répondre.";
+                
+                //echo "$destinataire, $sujet, $message, $entete";
+                
+                mail($destinataire, $sujet, $message, $entete) ; // Envoi du mail
+               
+                header("location: index.php?alert=newmdpmail");
+            }
+            else{
+                header("location: index.php?alert=dejaconnecte");
+            }
+        }
+        break;
+        
+    case 'chgmt_mdp':
+        $infos_user = select_by_id("user", "id_user", $_SESSION["id_user"]);
+        if($infos_user["mdp_user"] == md5($mdp_user_form) && $newmdp1 == $newmdp2){
+            if($mdp_user_form != $newmdp1){
+                extract($infos_user);
+                $mdp_user = md5($newmdp1);
+                modifier_user($id_user, $nom_user, $mdp_user, $mail, $statut, $idEnigme, $point_user, $indice_achete, $cle, $actif);
+                header("location: mdp_user.php?alert=okmdp");
+            } else {
+                header("location: mdp_user.php?mode=new_mdp&alert=pareil");
+            }
+        } else {
+            header("location: mdp_user.php?mode=new_mdp&alert=pbmdp");
+        }
+        break;
 }
-?>
+

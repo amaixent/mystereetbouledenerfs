@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 require('bdd.php');
 // CHANGER EN FONCTION DU NOM DE LA BASE DE DONNEES
@@ -6,6 +6,21 @@ $nom_bdd = 'site_enigme';
 /*
  * Ce qui concerne les utilisateurs :
  */
+
+//Pour générer un mot de passe aléatoire
+function mdp_aleatoire($nb_car)
+{
+    $chaine = 'azertyuiopqsdfghjklmwxcvbn123456789AZERTYUIOPMLKJHGFDSQWXCVBN!/+-(),';
+    $nb_lettres = strlen($chaine) - 1;
+    $generation = '';
+    for($i=0; $i < $nb_car; $i++)
+    {
+        $pos = mt_rand(0, $nb_lettres);
+        $car = $chaine[$pos];
+        $generation .= $car;
+    }
+    return $generation;
+}
 
 function enregistrer_user($nom_user, $mdp_user, $mail, $cle) {
 

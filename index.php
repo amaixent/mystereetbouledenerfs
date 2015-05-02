@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 require ('main.inc.php');
 
@@ -81,7 +81,12 @@ if (isset($alert)) {
         case 'activmail' :
             $avertissement = "Allez voir vos mails pour activer votre compte dès maintenant !";
             break;
-        
+        case 'newmdpmail' :
+            $avertissement = "Allez voir vos mails pour avoir votre nouveau mot de passe !";
+            break;
+        case 'dejaconnecte' :
+            $avertissement = "Vous êtes déjà connecté ... Si vous voulez modifier votre mot de passe <a href ='mdp_user.php?mode=new_mdp'>cliquez ici</a>";
+            break;
     }
 
     echo "<div class='alert alert-warning'>
@@ -129,7 +134,7 @@ if (empty($_SESSION['login'])) {
                     </div>
                 </form>
                 <br>
-                <a class="MP_oubli" href="#" > Mot de passe oublié ?</a>
+                <a class="MP_oubli" href="mdp_user.php?mode=mdp_oublie"> Mot de passe oublié ?</a>
                 <br>
                 <br>
                 <a href="enregistrement.php"> <button type="button" class="btn btn-default">Inscription</button> </a>

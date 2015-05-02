@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 require ('main.inc.php');
 if (empty($_SESSION['login'])) {
